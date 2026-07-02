@@ -1,0 +1,5 @@
+/.env
+/chroma_db
+/faiss_index
+/mcp-env
+/PDF_FOLDER
