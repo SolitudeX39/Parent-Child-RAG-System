@@ -3,3 +3,6 @@
 /faiss_index
 /mcp-env
 /PDF_FOLDER
+rag1.ipynb
+docker/docker-compose.yml
+.gitignore
