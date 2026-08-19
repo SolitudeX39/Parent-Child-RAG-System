@@ -4,12 +4,13 @@ from pathlib import Path
 import uuid
 import hashlib
 
-parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=30)
-child_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=20)
 
 
 RAG_NAMESPACE = uuid.UUID('7d5a5286-6df7-4404-b97c-e0938f381c15')
 def load_and_split_pdf(pdf_path: str):
+    
+    parent_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=30)
+    child_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=20)
     docs_list = []
     child_docs_list = []
     parent_docs_list = []

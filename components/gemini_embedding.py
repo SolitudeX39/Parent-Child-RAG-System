@@ -41,4 +41,3 @@ class GeminiEmbeddings(Embeddings):
         )
         return resp.embeddings[0].values
 
-gemini_embeddings = GeminiEmbeddings(api_key=api_key)

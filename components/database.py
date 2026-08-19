@@ -1,7 +1,7 @@
 import psycopg2 
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_google_genai  import ChatGoogleGenerativeAI
-from components import OpenRouterRerank, GeminiEmbeddings
+from components import OpenRouterRerank, GeminiEmbeddings, load_and_split_pdf
 
 import os 
 from dotenv import load_dotenv
@@ -11,8 +11,9 @@ api_key = os.getenv("GOOGLE_API_KEY")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 gemini_embeddings = GeminiEmbeddings(api_key=api_key)
+reranker = OpenRouterRerank(api_key=OPENROUTER_API_KEY)
 
-def insert_into_database(docs_list, parent_docs_list, child_docs_list, embedded_contents):
+def insert_into_database(pdf_path: str):
     conn = psycopg2.connect(
         database="vectordb3",
         user="postgres",
@@ -22,10 +23,12 @@ def insert_into_database(docs_list, parent_docs_list, child_docs_list, embedded_
     )
     cursor = conn.cursor()
 
-
+    docs_list, parent_docs_list, child_docs_list, child_texts = (load_and_split_pdf(pdf_path)) 
+    embedded_contents = gemini_embeddings.embed_documents(child_texts)
+    
     doc = docs_list[0]
 
-    file_hash = doc.metadata["file_hash"]
+    pdf_id = doc.metadata["document_id"]
     pdf_name = doc.metadata["pdf_name"]
 
     cursor.execute(
@@ -34,7 +37,7 @@ def insert_into_database(docs_list, parent_docs_list, child_docs_list, embedded_
         VALUES (%s, %s)
         ON CONFLICT (file_hash) DO NOTHING
         """,
-        (file_hash, pdf_name)
+        (pdf_id, pdf_name)
     )
     conn.commit()
 
@@ -72,8 +75,8 @@ def query_database(query):
     )
     cursor = conn.cursor()    
 
-    embed_query = gemini_embeddings.embed_query(query)
-    string_embed = str(embed_query)
+    embed_query = str(gemini_embeddings.embed_query(query))
+  
 
     sql_query = """ 
     WITH ranked_child_chunks AS ( 
@@ -93,7 +96,7 @@ def query_database(query):
     ORDER BY d.best_distance ASC
     LIMIT 5 
     """
-    cursor.execute(sql_query, (string_embed, string_embed))
+    cursor.execute(sql_query, (embed_query, embed_query))
 
     sql_result = cursor.fetchall()
     
@@ -102,7 +105,7 @@ def query_database(query):
         {"text": result[1]} for result in sql_result
     ]
 
-    reranker = OpenRouterRerank(api_key=OPENROUTER_API_KEY)
+    
     results = reranker.rerank(query=query, documents=documents_payload, top_n=1)
     context = [result.get('source') for result in results]
 
@@ -122,3 +125,4 @@ def query_database(query):
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_content)
     ])
+    return response.content
