@@ -10,32 +10,34 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 logger = logging.getLogger(__name__)
 
 class OpenRouterRerank:
-    def __init__(self, api_key= str, model ="nvidia/llama-nemotron-rerank-vl-1b-v2:free"):
+    def __init__(self, api_key, model ="nvidia/llama-nemotron-rerank-vl-1b-v2:free"):
         self.api_key = api_key
         self.model = model
         self.endpoint = "https://openrouter.ai/api/v1/rerank"
         self.headers = {
             "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json",}
+            "Content-Type": "application/json",
+            "HTTP-Referer": "http://localhost:3000"
+            }
         
-    def rerank(self, query: str, documents: List[Dict[str, Any]], top_k: int=5) -> List[Dict[str]]:
+    def rerank(self, query: str, documents: List[Dict[str, Any]], top_n = 5) -> List[Dict[str, Any]]:
         payload = {
             "model": self.model,
             "query": query,
             "documents": documents,
-            "top_k": top_k
+            "top_n": top_n
         }
         try:
             response = requests.post(self.endpoint, headers=self.headers, json= payload)
             response.raise_for_status()
-            results = response.json().get("results", [])
+            results = response.json()
 
             final_results = []
-            for result in results:
+            for result in results.get("results", []):
                 document = result.get("document")
-                source = document.get("parent_chunk")
+                source = document.get("text")
                 result_index = result.get("index")
-                score = result.get("relevace_score")
+                score = result.get("relevance_score")
                 final_results.append({
                     "index": result_index,
                     "score": score,
