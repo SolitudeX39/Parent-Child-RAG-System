@@ -6,18 +6,14 @@ from components import OpenRouterRerank, GeminiEmbeddings, load_and_split_pdf
 import os 
 from dotenv import load_dotenv
 
-load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-
-gemini_embeddings = GeminiEmbeddings(api_key=api_key)
+gemini_embeddings = GeminiEmbeddings()
 reranker = OpenRouterRerank(api_key=OPENROUTER_API_KEY)
 
 def insert_into_database(pdf_path: str):
     conn = psycopg2.connect(
         database="vectordb3",
         user="postgres",
-        password="newpassword",  # <-- Change this from "password"
+        password="newpassword",  
         host="127.0.0.1",
         port=5432
     )

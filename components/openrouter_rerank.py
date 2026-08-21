@@ -2,15 +2,16 @@ import json
 import logging
 from typing import List, Dict, Any, Optional
 import requests
+import logging as logger
 import os
 from dotenv import load_dotenv
+load_dotenv()
 
-__ALL__ = ["OpenRouterRerank"]
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-logger = logging.getLogger(__name__)
 
 class OpenRouterRerank:
-    def __init__(self, api_key, model ="nvidia/llama-nemotron-rerank-vl-1b-v2:free"):
+    def __init__(self, api_key= None, model ="nvidia/llama-nemotron-rerank-vl-1b-v2:free"):
+        if api_key is None:
+            api_key = os.getenv("OPENROUTER_API_KEY")
         self.api_key = api_key
         self.model = model
         self.endpoint = "https://openrouter.ai/api/v1/rerank"
