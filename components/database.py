@@ -1,25 +1,35 @@
 import psycopg2 
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_google_genai  import ChatGoogleGenerativeAI
-from components import OpenRouterRerank, GeminiEmbeddings, load_and_split_pdf
+
+from .openrouter_rerank import OpenRouterRerank 
+from .gemini_embedding import GeminiEmbeddings
+from .chunking_process import load_and_split_pdf
 
 import os 
 from dotenv import load_dotenv
+load_dotenv()
+api_key = os.getenv("GOOGLE_API_KEY")
 
 gemini_embeddings = GeminiEmbeddings()
-reranker = OpenRouterRerank(api_key=OPENROUTER_API_KEY)
+reranker = OpenRouterRerank()
+
+database_config = {
+    "database": "vectordb3",
+    "user": "postgres",
+    "password": "newpassword",
+    "host": "127.0.0.1",
+    "port": 5432
+}
+
 
 def insert_into_database(pdf_path: str):
-    conn = psycopg2.connect(
-        database="vectordb3",
-        user="postgres",
-        password="newpassword",  
-        host="127.0.0.1",
-        port=5432
-    )
+    conn = psycopg2.connect(**database_config)
     cursor = conn.cursor()
 
+    #Load and Split pdf contents ===> Convert into Embedding ===> Store both into Postgresql
     docs_list, parent_docs_list, child_docs_list, child_texts = (load_and_split_pdf(pdf_path)) 
+    #Embedding child chunks with gemini-embedding-2 model
     embedded_contents = gemini_embeddings.embed_documents(child_texts)
     
     doc = docs_list[0]
@@ -62,19 +72,14 @@ def insert_into_database(pdf_path: str):
 
 def query_database(query):
 
-    conn = psycopg2.connect(
-        database="vectordb3",
-        user="postgres",
-        password="newpassword",  # <-- Change this from "password"
-        host="127.0.0.1",
-        port=5432
-    )
+    conn = psycopg2.connect(**database_config)
     cursor = conn.cursor()    
 
-    embed_query = str(gemini_embeddings.embed_query(query))
+    #Step 1: Embed Query
+    embed_query = str(gemini_embeddings.embed_query(query)) 
   
-
-    sql_query = """ 
+    #Step 2: Query Results via Consine Similarity
+    sql_query = """  
     WITH ranked_child_chunks AS ( 
         SELECT parent_id, (embeddings <=> %s::vector ) AS distance FROM child_chunks 
         ORDER BY embeddings <=> %s::vector ASC
@@ -96,13 +101,13 @@ def query_database(query):
 
     sql_result = cursor.fetchall()
     
-
+    #Step 3: Prepare Payload for OpenRouter Reranker
     documents_payload = [
-        {"text": result[1]} for result in sql_result
+        {"text": f"[Page {result[2]}]\n{result[1]}" } for result in sql_result
     ]
 
-    
-    results = reranker.rerank(query=query, documents=documents_payload, top_n=1)
+    #Step 4: Reranking returned texts and retrieve highest scored texts for LLM's context. 
+    results = reranker.rerank(query=query, documents=documents_payload, top_n=1) 
     context = [result.get('source') for result in results]
 
     llm = ChatGoogleGenerativeAI(

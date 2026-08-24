@@ -2,10 +2,7 @@ from langchain_core.embeddings import Embeddings
 from google import genai
 from google.genai import types
 import os
-import tempfile
 
-# from components import load_and_split_pdf
-# from pathlib import Path
 from dotenv import load_dotenv    
 load_dotenv()
 
@@ -47,12 +44,3 @@ class GeminiEmbeddings(Embeddings):
         )
         return resp.embeddings[0].values
 
-# if __name__ == "__main__":
-#     # Example usage
-#     pdf_path = Path(
-#         r"PDF_FOLDER\a-practical-guide-to-building-agents.pdf"
-#     )
-#     docs, parents, children, child_texts = load_and_split_pdf(pdf_path)
-#     gemini_embeddings = GeminiEmbeddings(api_key=api_key)
-#     embeddings = gemini_embeddings.embed_documents(child_texts)
-#     print(embeddings)
