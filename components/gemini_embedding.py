@@ -2,19 +2,20 @@ from langchain_core.embeddings import Embeddings
 from google import genai
 from google.genai import types
 import os
-import tempfile
 
-# from components import load_and_split_pdf
-# from pathlib import Path
-from dotenv import load_dotenv    
-load_dotenv()
+from components.env import load_project_env
+
+load_project_env()
 
 
 class GeminiEmbeddings(Embeddings):
 
-    def __init__(self, api_key = None, model="gemini-embedding-2"):
+    def __init__(self, api_key=None, model="gemini-embedding-2"):
+        load_project_env()
         if api_key is None:
-            api_key = os.getenv("GOOGLE_API_KEY")    
+            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("ต้องใส่ GOOGLE_API_KEY ในไฟล์ .env")
         self.client = genai.Client(api_key=api_key)
         self.model = model
 
