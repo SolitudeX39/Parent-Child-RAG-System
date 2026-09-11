@@ -23,6 +23,9 @@ from components.database import (
     query_database,
     seed_mock_pdf_data,
 )
+from components.graph import graph_overview, related_terms, replace_graph
+from components.medical_graph import MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS
+from components.mock_pdf_data import MOCK_PDF_NAME
 
 app = FastAPI(title="Parent-Child RAG")
 
@@ -50,7 +53,8 @@ class ChatRequest(BaseModel):
 
 @app.get("/health")
 def health():
-    return {"ok": True}
+    overview = graph_overview()
+    return {"ok": True, "neo4j": not overview.get("skipped"), "graph_nodes": len(overview.get("nodes") or [])}
 
 
 @app.get("/documents")
@@ -101,6 +105,24 @@ async def upload(file: UploadFile = File(...)):
 def seed_mock():
     try:
         return {"status": "indexed", **seed_mock_pdf_data()}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.get("/graph")
+def graph():
+    return graph_overview()
+
+
+@app.get("/graph/search")
+def graph_search(q: str = ""):
+    return {"facts": related_terms(q)}
+
+
+@app.post("/graph/seed")
+def graph_seed():
+    try:
+        return replace_graph(MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS, MOCK_PDF_NAME)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 

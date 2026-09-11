@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import GraphView, { factsToGraph, type GraphOverview } from "./GraphView";
 
 type Source = {
   page?: number | null;
@@ -9,10 +10,22 @@ type Source = {
   document_id?: string | null;
 };
 
+type GraphFact = {
+  name: string;
+  thai?: string;
+  kind?: string;
+  definition?: string;
+  relation?: string;
+  related_name?: string;
+  related_thai?: string;
+  related_definition?: string;
+};
+
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
   sources?: Source[];
+  graph?: GraphFact[];
 };
 
 type DocumentItem = {
@@ -30,6 +43,7 @@ type DocumentDetail = {
   name: string;
   id: string;
   pages: DocumentPage[];
+  graph?: GraphOverview;
 };
 
 const API = "/rag";
@@ -38,6 +52,7 @@ const FALLBACK_PROMPTS = [
   "Hyper- กับ Hypo- แปลว่าอะไร?",
   "Myocardial infarction คืออะไร?",
   "คำย่อ NPO และ PRN หมายถึงอะไร?",
+  "Hypertension เกี่ยวกับอะไรในกราฟ?",
 ];
 
 async function readError(res: Response) {
@@ -67,9 +82,26 @@ export default function Home() {
   const [viewer, setViewer] = useState<DocumentDetail | null>(null);
   const [viewerLoading, setViewerLoading] = useState(false);
   const [activePage, setActivePage] = useState<number | null>(null);
+  const [graphOpen, setGraphOpen] = useState(false);
+  const [graph, setGraph] = useState<GraphOverview | null>(null);
+  const [graphLoading, setGraphLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pageRefs = useRef<Record<number, HTMLElement | null>>({});
+
+  const loadGraph = useCallback(async () => {
+    setGraphLoading(true);
+    try {
+      const res = await fetch(`${API}/graph`);
+      if (!res.ok) return;
+      const data = (await res.json()) as GraphOverview;
+      setGraph(data);
+    } catch {
+      setGraph({ nodes: [], links: [], skipped: true });
+    } finally {
+      setGraphLoading(false);
+    }
+  }, []);
 
   const loadDocuments = useCallback(async () => {
     try {
@@ -84,13 +116,14 @@ export default function Home() {
 
   useEffect(() => {
     loadDocuments();
+    void loadGraph();
     fetch(`${API}/prompts`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data?.prompts?.length) setPrompts(data.prompts);
       })
       .catch(() => undefined);
-  }, [loadDocuments]);
+  }, [loadDocuments, loadGraph]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -109,6 +142,7 @@ export default function Home() {
       if (!res.ok) throw new Error(await readError(res));
       const data = (await res.json()) as DocumentDetail;
       setViewer(data);
+      if (data.graph) setGraph(data.graph);
       setActivePage(typeof page === "number" ? page : data.pages[0]?.page ?? null);
       setSidebarOpen(false);
     } catch (err) {
@@ -175,6 +209,7 @@ export default function Home() {
           role: "assistant",
           content: data.answer || "ไม่พบคำตอบ",
           sources: data.sources || [],
+          graph: data.graph || [],
         },
       ]);
     } catch (err) {
@@ -277,6 +312,22 @@ export default function Home() {
               ))}
             </ul>
           )}
+          <button
+            type="button"
+            onClick={() => {
+              setGraphOpen(true);
+              void loadGraph();
+              setSidebarOpen(false);
+            }}
+            className="mt-4 w-full rounded-xl bg-white/10 px-3 py-2 text-left text-sm hover:bg-white/15"
+          >
+            <span className="block font-medium">กราฟศัพท์ Neo4j</span>
+            <span className="mt-1 block text-xs text-[#d8c7b2]">
+              {graph?.skipped
+                ? "ยังเชื่อมต่อไม่ได้"
+                : `${graph?.nodes.length || 0} โหนด · ${graph?.links.length || 0} ความสัมพันธ์`}
+            </span>
+          </button>
         </div>
       </aside>
 
@@ -295,16 +346,28 @@ export default function Home() {
               <p className="text-xs text-[var(--ink-soft)]">คุยจากเอกสารที่เปิดหรืออัปโหลดไว้</p>
             </div>
           </div>
-          <button
-            type="button"
-            className="rounded-full border border-[var(--line)] px-3 py-1 text-sm hover:bg-black/5"
-            onClick={() => {
-              setMessages([]);
-              setError("");
-            }}
-          >
-            ล้างแชท
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              className="rounded-full border border-[var(--line)] px-3 py-1 text-sm hover:bg-black/5"
+              onClick={() => {
+                setGraphOpen((open) => !open);
+                if (!graph) void loadGraph();
+              }}
+            >
+              กราฟ
+            </button>
+            <button
+              type="button"
+              className="rounded-full border border-[var(--line)] px-3 py-1 text-sm hover:bg-black/5"
+              onClick={() => {
+                setMessages([]);
+                setError("");
+              }}
+            >
+              ล้างแชท
+            </button>
+          </div>
         </header>
 
         <div className="flex-1 overflow-y-auto px-4 py-6 md:px-10">
@@ -365,6 +428,16 @@ export default function Home() {
                     ))}
                   </div>
                 )}
+                {message.graph && message.graph.length > 0 && (
+                  <div className="mt-3 border-t border-[var(--line)] pt-2">
+                    <p className="mb-2 text-xs font-medium text-[var(--accent)]">จากกราฟ Neo4j</p>
+                    <GraphView
+                      compact
+                      graph={factsToGraph(message.graph)}
+                      highlight={message.graph.map((fact) => fact.name)}
+                    />
+                  </div>
+                )}
               </article>
             ))}
             {busy && (
@@ -396,7 +469,7 @@ export default function Home() {
       </main>
 
       {(viewer || viewerLoading) && (
-        <section className="fixed inset-y-0 right-0 z-40 flex w-full max-w-xl flex-col border-l border-[var(--line)] bg-[#fffdf8] shadow-2xl md:static md:z-0 md:shadow-none">
+        <section className="fixed inset-y-0 right-0 z-40 flex w-full max-w-2xl flex-col border-l border-[var(--line)] bg-[#fffdf8] shadow-2xl md:static md:z-0 md:w-[min(36rem,42vw)] md:shadow-none">
           <header className="flex items-start justify-between gap-3 border-b border-[var(--line)] px-5 py-4">
             <div>
               <p className="text-xs tracking-wide text-[var(--ink-soft)]">กำลังอ่าน</p>
@@ -417,6 +490,11 @@ export default function Home() {
           </header>
           <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">
             {viewerLoading && <p className="text-sm text-[var(--ink-soft)]">กำลังโหลดเนื้อหา...</p>}
+            {viewer?.graph && !viewer.graph.skipped && viewer.graph.nodes.length > 0 && (
+              <div className="mb-5 h-[22rem]">
+                <GraphView graph={viewer.graph} />
+              </div>
+            )}
             {viewer?.pages.map((page, index) => (
               <article
                 key={`${page.page}-${index}`}
@@ -437,6 +515,52 @@ export default function Home() {
                 </p>
               </article>
             ))}
+          </div>
+        </section>
+      )}
+
+      {graphOpen && !viewer && (
+        <section className="fixed inset-y-0 right-0 z-40 flex w-full max-w-3xl flex-col border-l border-[var(--line)] bg-[#fffdf8] shadow-2xl md:static md:z-0 md:w-[min(44rem,48vw)] md:shadow-none">
+          <header className="flex items-start justify-between gap-3 border-b border-[var(--line)] px-5 py-4">
+            <div>
+              <p className="text-xs tracking-wide text-[var(--ink-soft)]">Neo4j</p>
+              <h2 className="mt-1 text-lg font-semibold leading-snug">กราฟศัพท์การแพทย์</h2>
+            </div>
+            <button
+              type="button"
+              className="rounded-full border border-[var(--line)] px-3 py-1 text-sm"
+              onClick={() => setGraphOpen(false)}
+            >
+              ปิด
+            </button>
+          </header>
+          <div className="flex min-h-0 flex-1 flex-col px-5 py-4">
+            {graphLoading && <p className="text-sm text-[var(--ink-soft)]">กำลังโหลดกราฟ...</p>}
+            {!graphLoading && graph?.skipped && (
+              <p className="text-sm text-[var(--ink-soft)]">
+                ยังเชื่อม Neo4j ไม่ได้ เปิด Docker แล้วกดเติมกราฟอีกครั้ง
+              </p>
+            )}
+            {graph && !graph.skipped && <GraphView graph={graph} />}
+            <button
+              type="button"
+              className="mt-3 self-start rounded-full border border-[var(--line)] px-3 py-1 text-sm hover:bg-black/5"
+              onClick={async () => {
+                setGraphLoading(true);
+                setError("");
+                try {
+                  const res = await fetch(`${API}/graph/seed`, { method: "POST" });
+                  if (!res.ok) throw new Error(await readError(res));
+                  await loadGraph();
+                } catch (err) {
+                  setError(err instanceof Error ? err.message : "เติมกราฟไม่สำเร็จ");
+                } finally {
+                  setGraphLoading(false);
+                }
+              }}
+            >
+              เติมกราฟศัพท์
+            </button>
           </div>
         </section>
       )}

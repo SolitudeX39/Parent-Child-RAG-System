@@ -9,6 +9,8 @@ from components.chat_prompt import CHAT_SYSTEM_PROMPT
 from components.chunking_process import load_and_split_pages, load_and_split_pdf
 from components.env import load_project_env
 from components.gemini_embedding import GeminiEmbeddings
+from components.graph import format_graph_context, graph_overview, related_terms, replace_graph
+from components.medical_graph import MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS
 from components.mock_pdf_data import MOCK_PDF_NAME, MOCK_PDF_PAGES
 from components.openrouter_rerank import OpenRouterRerank
 
@@ -102,7 +104,7 @@ def _store_split_documents(docs_list, parent_docs_list, child_docs_list, child_t
             )
         conn.commit()
 
-        return {
+        result = {
             "filename": pdf_name,
             "document_id": pdf_id,
             "parent_chunks": len(parent_docs_list),
@@ -110,6 +112,11 @@ def _store_split_documents(docs_list, parent_docs_list, child_docs_list, child_t
         }
     finally:
         conn.close()
+
+    result["graph"] = replace_graph(
+        MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS, pdf_name
+    )
+    return result
 
 
 def insert_into_database(pdf_path: str | Path) -> dict:
@@ -186,7 +193,12 @@ def get_document(document_id: str) -> dict | None:
             {"page": item[0], "text": item[1]}
             for item in cursor.fetchall()
         ]
-        return {"name": row[0], "id": row[1], "pages": pages}
+        return {
+            "name": row[0],
+            "id": row[1],
+            "pages": pages,
+            "graph": graph_overview(),
+        }
     finally:
         conn.close()
 
@@ -222,19 +234,25 @@ def query_database(query: str, history: list | None = None) -> dict:
     finally:
         conn.close()
 
-    if not sql_result:
+    graph_facts = related_terms(query)
+    graph_text = format_graph_context(graph_facts)
+
+    if not sql_result and not graph_facts:
         return {
-            "answer": "ไม่พบเนื้อหาที่เกี่ยวข้องในเอกสารที่อัปโหลดไว้",
+            "answer": "ไม่พบเนื้อหาที่เกี่ยวข้องในเอกสารหรือกราฟศัพท์",
             "sources": [],
+            "graph": [],
         }
 
-    documents_payload = [{"text": result[1]} for result in sql_result]
-    ranked = _get_reranker().rerank(
-        query=query, documents=documents_payload, top_n=min(3, len(documents_payload))
-    ) or []
-    context = [item.get("source") for item in ranked if item.get("source")]
-    if not context:
-        context = [row[1] for row in sql_result[:3]]
+    context = []
+    if sql_result:
+        documents_payload = [{"text": result[1]} for result in sql_result]
+        ranked = _get_reranker().rerank(
+            query=query, documents=documents_payload, top_n=min(3, len(documents_payload))
+        ) or []
+        context = [item.get("source") for item in ranked if item.get("source")]
+        if not context:
+            context = [row[1] for row in sql_result[:3]]
 
     llm = ChatOpenAI(
         model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
@@ -243,6 +261,9 @@ def query_database(query: str, history: list | None = None) -> dict:
 
     user_content = f"""Context จากเอกสาร:
 {context}
+
+กราฟศัพท์จาก Neo4j:
+{graph_text or "ไม่พบโหนดที่เกี่ยวข้อง"}
 
 คำถามของผู้ใช้:
 {query}"""
@@ -270,4 +291,8 @@ def query_database(query: str, history: list | None = None) -> dict:
         }
         for row in sql_result
     ]
-    return {"answer": response.content, "sources": sources}
+    return {
+        "answer": response.content,
+        "sources": sources,
+        "graph": graph_facts,
+    }
