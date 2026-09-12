@@ -15,7 +15,8 @@ from components.env import load_project_env
 
 load_project_env()
 
-from components.chat_prompt import SUGGESTED_PROMPTS
+from components.chat_prompt import GRAPH_BUILD_PROMPTS, SUGGESTED_PROMPTS
+from components.graph_build import build_graph_from_prompt
 from components.database import (
     get_document,
     insert_into_database,
@@ -67,7 +68,7 @@ def documents():
 
 @app.get("/prompts")
 def prompts():
-    return {"prompts": SUGGESTED_PROMPTS}
+    return {"prompts": SUGGESTED_PROMPTS, "graph_prompts": GRAPH_BUILD_PROMPTS}
 
 
 @app.get("/documents/{document_id}")
@@ -123,6 +124,17 @@ def graph_search(q: str = ""):
 def graph_seed():
     try:
         return replace_graph(MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS, MOCK_PDF_NAME)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/graph/build")
+def graph_build(body: ChatRequest):
+    message = body.message.strip()
+    if not message:
+        raise HTTPException(status_code=400, detail="message required")
+    try:
+        return build_graph_from_prompt(message)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 

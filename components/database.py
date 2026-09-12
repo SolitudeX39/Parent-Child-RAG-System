@@ -203,6 +203,42 @@ def get_document(document_id: str) -> dict | None:
         conn.close()
 
 
+def search_parent_chunks(query: str, limit: int = 5) -> list[tuple]:
+    try:
+        conn = get_connection()
+        try:
+            cursor = conn.cursor()
+            embed_query = _to_vector(_embeddings().embed_query(query))
+            cursor.execute(
+                """
+                WITH ranked_child_chunks AS (
+                    SELECT parent_id, (embeddings <=> %s::vector) AS distance
+                    FROM child_chunks
+                    ORDER BY embeddings <=> %s::vector ASC
+                    LIMIT 20
+                ),
+                deduplicated_parent_ids AS (
+                    SELECT parent_id, MIN(distance) AS best_distance
+                    FROM ranked_child_chunks
+                    GROUP BY parent_id
+                )
+                SELECT p.parent_id, p.parent_texts, p.page, d.pdf_name, d.file_hash
+                FROM parent_chunks p
+                JOIN deduplicated_parent_ids r ON p.parent_id = r.parent_id
+                LEFT JOIN documents d ON p.file_hash = d.file_hash
+                WHERE length(p.parent_texts) > 100
+                ORDER BY r.best_distance ASC
+                LIMIT %s
+                """,
+                (embed_query, embed_query, limit),
+            )
+            return cursor.fetchall()
+        finally:
+            conn.close()
+    except Exception:
+        return []
+
+
 def query_database(query: str, history: list | None = None) -> dict:
     conn = get_connection()
     try:
