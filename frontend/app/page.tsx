@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import GraphView, { factsToGraph, type GraphOverview } from "./GraphView";
 import {
   CHAT_EVENT,
@@ -53,6 +53,12 @@ const FALLBACK_GRAPH_PROMPTS = [
   "ดึงความสัมพันธ์ของ Hyper- Hypo- Brady- Tachy- จากเอกสาร",
   "เชื่อม Hypertension กับ Stroke และ Myocardial infarction",
 ];
+
+function MessageGraph({ facts }: { facts: GraphFact[] }) {
+  const graph = useMemo(() => factsToGraph(facts), [facts]);
+  const highlight = useMemo(() => facts.map((fact) => fact.name), [facts]);
+  return <GraphView compact graph={graph} highlight={highlight} />;
+}
 
 export default function Home() {
   const [threadId, setThreadId] = useState("");
@@ -347,11 +353,7 @@ export default function Home() {
                 {message.graph && message.graph.length > 0 && (
                   <div className="mt-3 border-t border-white/10 pt-2">
                     <p className="mb-2 text-[10px] tracking-[0.18em] text-cyan-300">NEO4J GRAPH</p>
-                    <GraphView
-                      compact
-                      graph={factsToGraph(message.graph)}
-                      highlight={message.graph.map((fact) => fact.name)}
-                    />
+                    <MessageGraph facts={message.graph} />
                   </div>
                 )}
               </article>

@@ -184,8 +184,32 @@ export default function GraphView({
   compact?: boolean;
   highlight?: string[];
 }) {
-  const nodes = graph.nodes ?? [];
-  const links = (graph.links ?? []).filter((link) => link?.from && link?.to);
+  const graphId = useMemo(() => {
+    const nodeKey = (graph.nodes ?? [])
+      .filter((node) => node?.name)
+      .map((node) => node.name)
+      .join("|");
+    const linkKey = (graph.links ?? [])
+      .filter((link) => link?.from && link?.to)
+      .map((link) => `${link.from}->${link.to}:${link.label || link.type || ""}`)
+      .join("|");
+    return `${nodeKey}::${linkKey}`;
+  }, [graph.nodes, graph.links]);
+
+  const nodes = useMemo(() => {
+    const seen = new Set<string>();
+    return (graph.nodes ?? []).filter((node) => {
+      if (!node?.name || seen.has(node.name)) return false;
+      seen.add(node.name);
+      return true;
+    });
+  }, [graphId]);
+
+  const links = useMemo(
+    () => (graph.links ?? []).filter((link) => link?.from && link?.to && link.from !== link.to),
+    [graphId],
+  );
+
   const wrapRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 640, height: compact ? 260 : 520 });
   const [positions, setPositions] = useState<Record<string, Point>>({});
@@ -193,6 +217,7 @@ export default function GraphView({
   const [hover, setHover] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const dragRef = useRef<{ name: string; dx: number; dy: number } | null>(null);
+  const graphIdRef = useRef(graphId);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -211,11 +236,6 @@ export default function GraphView({
     observer.observe(el);
     return () => observer.disconnect();
   }, [compact]);
-
-  const nodeKey = nodes.map((node) => node.name).join("|");
-  const linkKey = links.map((link) => `${link.from}->${link.to}`).join("|");
-  const graphId = `${nodeKey}::${linkKey}`;
-  const graphIdRef = useRef(graphId);
 
   useEffect(() => {
     const laid = runLayout(nodes, links, size.width, size.height);
