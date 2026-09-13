@@ -14,7 +14,8 @@ import {
 
 const TABS = [
   { href: "/", label: "Chat", hint: "ถามเอกสาร" },
-  { href: "/upload", label: "อัปโหลด", hint: "ใส่ PDF" },
+  { href: "/upload", label: "อัปโหลด", hint: "ใส่ PDF หรือ CSV" },
+  { href: "/datasets", label: "Dataset", hint: "สรุปคลังข้อมูล" },
 ];
 
 export default function AppTabs() {

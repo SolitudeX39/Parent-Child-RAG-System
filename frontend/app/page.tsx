@@ -11,7 +11,7 @@ import {
   upsertThread,
   type ChatAction,
 } from "./chatStore";
-import { API, type DocumentPage, type Source, readError } from "./lib";
+import { API, type DocumentPage, type Source, readError, sourceLocationLabel } from "./lib";
 
 type ChatMode = "ask" | "graph";
 
@@ -297,7 +297,7 @@ export default function Home() {
               <p className="mt-2 text-sm text-slate-400">
                 {mode === "graph"
                   ? "บอกศัพท์และความสัมพันธ์ หรือให้ดึงจากเอกสารที่อัปโหลดไว้"
-                  : "เลือกประโยคด้านล่าง หรือไปแทบอัปโหลดเพื่อเพิ่ม PDF"}
+                  : "ระบบค้นจากทุกไฟล์ PDF และ CSV ที่เคยอัปโหลดไว้ รวมกันในคลังเดียว"}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {(mode === "graph" ? graphPrompts : prompts).map((prompt) => (
@@ -341,7 +341,9 @@ export default function Home() {
                         >
                           ดูเอกสาร
                           {source.filename ? ` · ${source.filename}` : ""}
-                          {typeof source.page === "number" ? ` · หน้า ${source.page + 1}` : ""}
+                          {typeof source.page === "number"
+                            ? ` · ${sourceLocationLabel(source.filename, source.page)}`
+                            : ""}
                         </button>
                         <p className="mt-2 max-h-28 overflow-y-auto whitespace-pre-wrap text-slate-400">
                           {source.text}
@@ -404,7 +406,7 @@ export default function Home() {
                     }}
                   >
                     <span className="font-medium">ถามเอกสาร</span>
-                    <span className="text-xs text-slate-500">คุยและค้นจาก PDF</span>
+                    <span className="text-xs text-slate-500">ค้นจากทุกไฟล์ที่เคยอัปโหลด</span>
                   </button>
                   <button
                     type="button"
@@ -486,7 +488,7 @@ export default function Home() {
                 }`}
               >
                 <p className="text-xs font-medium text-cyan-300">
-                  หน้า {typeof page.page === "number" ? page.page + 1 : index + 1}
+                  {sourceLocationLabel(viewer.name, page.page, index)}
                 </p>
                 <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-slate-300">
                   {page.text}

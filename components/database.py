@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 
 import psycopg2
@@ -6,7 +7,7 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 
 from components.chat_prompt import CHAT_SYSTEM_PROMPT
-from components.chunking_process import load_and_split_pages, load_and_split_pdf
+from components.chunking_process import load_and_split_file, load_and_split_pages
 from components.env import load_project_env
 from components.gemini_embedding import GeminiEmbeddings
 from components.graph import format_graph_context, graph_overview, related_terms, replace_graph
@@ -50,7 +51,7 @@ def _to_vector(values) -> str:
 
 def _store_split_documents(docs_list, parent_docs_list, child_docs_list, child_texts) -> dict:
     if not docs_list:
-        raise ValueError("No pages found in the PDF.")
+        raise ValueError("ไม่พบเนื้อหาในไฟล์ที่อัปโหลด")
 
     conn = get_connection()
     try:
@@ -119,10 +120,10 @@ def _store_split_documents(docs_list, parent_docs_list, child_docs_list, child_t
     return result
 
 
-def insert_into_database(pdf_path: str | Path) -> dict:
-    pdf_path = Path(pdf_path)
-    docs_list, parent_docs_list, child_docs_list, child_texts = load_and_split_pdf(
-        pdf_path
+def insert_into_database(file_path: str | Path) -> dict:
+    file_path = Path(file_path)
+    docs_list, parent_docs_list, child_docs_list, child_texts = load_and_split_file(
+        file_path
     )
     return _store_split_documents(
         docs_list, parent_docs_list, child_docs_list, child_texts
@@ -154,17 +155,33 @@ def list_documents() -> list[dict]:
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT d.pdf_name, d.file_hash, COUNT(p.parent_id) AS pages
+            SELECT
+                d.pdf_name,
+                d.file_hash,
+                COUNT(DISTINCT p.parent_id) AS parents,
+                COUNT(c.child_id) AS children
             FROM documents d
             LEFT JOIN parent_chunks p ON p.file_hash = d.file_hash
+            LEFT JOIN child_chunks c ON c.parent_id = p.parent_id
             GROUP BY d.pdf_name, d.file_hash
             ORDER BY d.pdf_name
             """
         )
-        return [
-            {"name": row[0], "id": row[1], "chunks": row[2]}
-            for row in cursor.fetchall()
-        ]
+        documents = []
+        for row in cursor.fetchall():
+            name = row[0]
+            lower = (name or "").lower()
+            kind = "csv" if lower.endswith(".csv") else "pdf" if lower.endswith(".pdf") else "file"
+            documents.append(
+                {
+                    "name": name,
+                    "id": row[1],
+                    "chunks": row[2],
+                    "children": row[3],
+                    "kind": kind,
+                }
+            )
+        return documents
     finally:
         conn.close()
 
@@ -203,72 +220,165 @@ def get_document(document_id: str) -> dict | None:
         conn.close()
 
 
-def search_parent_chunks(query: str, limit: int = 5) -> list[tuple]:
+def _source_label(filename: str | None, page) -> str:
+    name = filename or "เอกสาร"
+    if page is None:
+        return name
+    kind = "แถว" if name.lower().endswith(".csv") else "หน้า"
     try:
-        conn = get_connection()
-        try:
-            cursor = conn.cursor()
-            embed_query = _to_vector(_embeddings().embed_query(query))
-            cursor.execute(
-                """
-                WITH ranked_child_chunks AS (
-                    SELECT parent_id, (embeddings <=> %s::vector) AS distance
-                    FROM child_chunks
-                    ORDER BY embeddings <=> %s::vector ASC
-                    LIMIT 20
-                ),
-                deduplicated_parent_ids AS (
-                    SELECT parent_id, MIN(distance) AS best_distance
-                    FROM ranked_child_chunks
-                    GROUP BY parent_id
-                )
-                SELECT p.parent_id, p.parent_texts, p.page, d.pdf_name, d.file_hash
-                FROM parent_chunks p
-                JOIN deduplicated_parent_ids r ON p.parent_id = r.parent_id
-                LEFT JOIN documents d ON p.file_hash = d.file_hash
-                WHERE length(p.parent_texts) > 100
-                ORDER BY r.best_distance ASC
-                LIMIT %s
-                """,
-                (embed_query, embed_query, limit),
-            )
-            return cursor.fetchall()
-        finally:
-            conn.close()
-    except Exception:
-        return []
+        number = int(page) + 1
+    except (TypeError, ValueError):
+        return name
+    return f"{name} · {kind} {number}"
 
 
-def query_database(query: str, history: list | None = None) -> dict:
+_STOP_WORDS = {
+    "the", "and", "for", "with", "from", "that", "this", "what", "how",
+    "คือ", "อะไร", "ของ", "ใน", "ที่", "และ", "หรือ", "มี", "ไหม", "ได้",
+    "จาก", "ให้", "ว่า", "เป็น", "บ้าง",
+}
+
+
+def _search_terms(query: str) -> list[str]:
+    terms = []
+    cleaned = (query or "").strip()
+    if cleaned:
+        terms.append(cleaned)
+    for token in re.findall(r"[\w\u0E00-\u0E7F-]{3,}", cleaned):
+        if token.lower() not in _STOP_WORDS and token not in terms:
+            terms.append(token)
+    return terms[:8]
+
+
+def _vector_search_per_document(query: str, per_doc: int = 4) -> list[tuple]:
     conn = get_connection()
     try:
         cursor = conn.cursor()
         embed_query = _to_vector(_embeddings().embed_query(query))
-
-        sql_query = """
-        WITH ranked_child_chunks AS (
-            SELECT parent_id, (embeddings <=> %s::vector) AS distance
-            FROM child_chunks
-            ORDER BY embeddings <=> %s::vector ASC
-            LIMIT 20
-        ),
-        deduplicated_parent_ids AS (
-            SELECT parent_id, MIN(distance) AS best_distance
-            FROM ranked_child_chunks
-            GROUP BY parent_id
+        cursor.execute(
+            """
+            WITH scored AS (
+                SELECT
+                    p.parent_id,
+                    p.parent_texts,
+                    p.page,
+                    d.pdf_name,
+                    d.file_hash,
+                    (c.embeddings <=> %s::vector) AS distance,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY d.file_hash
+                        ORDER BY c.embeddings <=> %s::vector ASC
+                    ) AS rn
+                FROM child_chunks c
+                JOIN parent_chunks p ON p.parent_id = c.parent_id
+                JOIN documents d ON d.file_hash = p.file_hash
+                WHERE length(trim(p.parent_texts)) > 0
+            )
+            SELECT parent_id, parent_texts, page, pdf_name, file_hash
+            FROM scored
+            WHERE rn <= %s
+            ORDER BY distance ASC
+            """,
+            (embed_query, embed_query, per_doc),
         )
-        SELECT p.parent_id, p.parent_texts, p.page, d.pdf_name, d.file_hash
-        FROM parent_chunks p
-        JOIN deduplicated_parent_ids r ON p.parent_id = r.parent_id
-        LEFT JOIN documents d ON p.file_hash = d.file_hash
-        WHERE length(p.parent_texts) > 100
-        ORDER BY r.best_distance ASC
-        LIMIT 5
-        """
-        cursor.execute(sql_query, (embed_query, embed_query))
-        sql_result = cursor.fetchall()
+        return cursor.fetchall()
     finally:
         conn.close()
+
+
+def _lexical_search(query: str, limit: int = 16) -> list[tuple]:
+    terms = _search_terms(query)
+    if not terms:
+        return []
+    patterns = [f"%{term}%" for term in terms]
+    conn = get_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT DISTINCT p.parent_id, p.parent_texts, p.page, d.pdf_name, d.file_hash
+            FROM parent_chunks p
+            LEFT JOIN documents d ON d.file_hash = p.file_hash
+            LEFT JOIN child_chunks c ON c.parent_id = p.parent_id
+            WHERE p.parent_texts ILIKE ANY(%s)
+               OR c.child_text ILIKE ANY(%s)
+            LIMIT %s
+            """,
+            (patterns, patterns, limit),
+        )
+        return cursor.fetchall()
+    finally:
+        conn.close()
+
+
+def _merge_search_rows(*groups: list[tuple], limit: int = 12) -> list[tuple]:
+    seen = set()
+    merged = []
+    for group in groups:
+        for row in group:
+            key = str(row[0])
+            if key in seen:
+                continue
+            seen.add(key)
+            merged.append(row)
+    return _diversify_rows(merged, limit)
+
+
+def _diversify_rows(rows: list[tuple], limit: int = 12, per_file: int = 5) -> list[tuple]:
+    by_file: dict[str, list[tuple]] = {}
+    for row in rows:
+        by_file.setdefault(str(row[4] or row[3] or "doc"), []).append(row)
+    picked = []
+    while len(picked) < limit and any(by_file.values()):
+        progressed = False
+        for key, items in list(by_file.items()):
+            if not items or len(picked) >= limit:
+                continue
+            used = sum(1 for item in picked if str(item[4] or item[3] or "doc") == key)
+            if used >= per_file:
+                by_file[key] = []
+                continue
+            picked.append(items.pop(0))
+            progressed = True
+        if not progressed:
+            break
+    return picked
+
+
+def _search_all_documents(query: str, limit: int = 12) -> list[tuple]:
+    vector_rows = []
+    try:
+        vector_rows = _vector_search_per_document(query, per_doc=4)
+    except Exception:
+        vector_rows = []
+    lexical_rows = []
+    try:
+        lexical_rows = _lexical_search(query, limit=16)
+    except Exception:
+        lexical_rows = []
+    return _merge_search_rows(vector_rows, lexical_rows, limit=limit)
+
+
+def search_parent_chunks(query: str, limit: int = 12) -> list[tuple]:
+    try:
+        return _search_all_documents(query, limit=limit)
+    except Exception:
+        return []
+
+
+def _context_from_rows(rows: list[tuple]) -> str:
+    grouped: dict[str, list[str]] = {}
+    for row in rows:
+        label = _source_label(row[3], row[2])
+        grouped.setdefault(row[3] or "เอกสาร", []).append(f"{label}\n{row[1]}")
+    blocks = []
+    for filename, items in grouped.items():
+        blocks.append(f"## {filename}\n" + "\n\n".join(items))
+    return "\n\n".join(blocks)
+
+
+def query_database(query: str, history: list | None = None) -> dict:
+    sql_result = _search_all_documents(query, limit=12)
 
     graph_facts = related_terms(query)
     graph_text = format_graph_context(graph_facts)
@@ -280,23 +390,15 @@ def query_database(query: str, history: list | None = None) -> dict:
             "graph": [],
         }
 
-    context = []
-    if sql_result:
-        documents_payload = [{"text": result[1]} for result in sql_result]
-        ranked = _get_reranker().rerank(
-            query=query, documents=documents_payload, top_n=min(3, len(documents_payload))
-        ) or []
-        context = [item.get("source") for item in ranked if item.get("source")]
-        if not context:
-            context = [row[1] for row in sql_result[:3]]
+    context_text = _context_from_rows(sql_result)
 
     llm = ChatOpenAI(
         model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
         api_key=os.getenv("OPENAI_API_KEY"),
     )
 
-    user_content = f"""Context จากเอกสาร:
-{context}
+    user_content = f"""Context จากเอกสารทั้งหมดที่เคยอัปโหลด แยกตามไฟล์ PDF และ CSV:
+{context_text}
 
 กราฟศัพท์จาก Neo4j:
 {graph_text or "ไม่พบโหนดที่เกี่ยวข้อง"}

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import GraphView, { type GraphOverview } from "../GraphView";
-import { API, type DocumentItem, type DocumentPage, readError } from "../lib";
+import { API, type DocumentItem, type DocumentPage, readError, sourceLocationLabel } from "../lib";
 
 type DocumentDetail = {
   name: string;
@@ -59,9 +59,10 @@ export default function UploadPage() {
     }
   }
 
-  async function uploadPdf(file: File) {
-    if (!file.name.toLowerCase().endsWith(".pdf")) {
-      setError("กรุณาเลือกไฟล์ PDF เท่านั้น");
+  async function uploadFile(file: File) {
+    const suffix = file.name.toLowerCase();
+    if (!suffix.endsWith(".pdf") && !suffix.endsWith(".csv")) {
+      setError("กรุณาเลือกไฟล์ PDF หรือ CSV");
       return;
     }
 
@@ -75,7 +76,9 @@ export default function UploadPage() {
       if (!res.ok) throw new Error(await readError(res));
       const data = await res.json();
       await loadDocuments();
-      setStatus(`อ่าน ${data.filename} แล้ว มี ${data.parent_chunks} ช่วงเนื้อหา`);
+      setStatus(
+        `เพิ่ม ${data.filename} เข้าคลังแล้ว (${data.parent_chunks} ช่วง) ถามที่แทบ Chat ได้จากทุกไฟล์ที่อัปไว้`,
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "อัปโหลดไม่สำเร็จ");
     } finally {
@@ -91,7 +94,7 @@ export default function UploadPage() {
           <p className="text-[10px] tracking-[0.28em] text-cyan-300">MEDICAL RAG AI</p>
           <h1 className="mt-2 text-3xl font-semibold text-white">อัปโหลดเอกสาร</h1>
           <p className="mt-2 text-sm text-slate-400">
-            วางหรือเลือกไฟล์ PDF ตรงกลางหน้านี้ แล้วสลับไปแทบ Chat เพื่อถาม
+            อัปโหลด PDF หรือ CSV ได้หลายไฟล์ แล้วไปแทบ Dataset เพื่อดูสรุปคลังทั้งหมด
           </p>
         </div>
 
@@ -105,7 +108,7 @@ export default function UploadPage() {
             event.preventDefault();
             setDragOver(false);
             const file = event.dataTransfer.files?.[0];
-            if (file) void uploadPdf(file);
+            if (file) void uploadFile(file);
           }}
           className={`mt-8 flex cursor-pointer flex-col items-center rounded-3xl border-2 border-dashed px-6 py-16 text-center transition ${
             dragOver
@@ -116,15 +119,15 @@ export default function UploadPage() {
           <input
             ref={fileInputRef}
             type="file"
-            accept="application/pdf,.pdf"
+            accept="application/pdf,.pdf,text/csv,.csv"
             className="hidden"
             onChange={(event) => {
               const file = event.target.files?.[0];
-              if (file) void uploadPdf(file);
+              if (file) void uploadFile(file);
             }}
           />
           <span className="text-lg font-medium text-white">
-            {uploading ? "กำลัง index เอกสาร..." : "วางไฟล์ PDF ที่นี่"}
+            {uploading ? "กำลัง index เอกสาร..." : "วางไฟล์ PDF หรือ CSV ที่นี่"}
           </span>
           <span className="mt-2 text-sm text-slate-400">หรือคลิกเพื่อเลือกไฟล์</span>
         </label>
@@ -182,7 +185,7 @@ export default function UploadPage() {
             }`}
           >
             <p className="text-xs font-medium text-cyan-300">
-              หน้า {typeof page.page === "number" ? page.page + 1 : index + 1}
+              {sourceLocationLabel(viewer.name, page.page, index)}
             </p>
             <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-slate-300">
               {page.text}

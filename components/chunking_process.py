@@ -65,3 +65,66 @@ def load_and_split_pdf(pdf_path: str | Path):
         doc.metadata["document_id"] = document_id
 
     return _split_docs(docs)
+
+
+def _load_csv_docs(csv_path: Path):
+    from langchain_community.document_loaders import CSVLoader
+
+    last_error = None
+    for encoding in ("utf-8-sig", "utf-8", "cp874", "cp1252"):
+        try:
+            loader = CSVLoader(
+                file_path=str(csv_path),
+                encoding=encoding,
+                csv_args={"skipinitialspace": True},
+            )
+            docs = loader.load()
+            if docs:
+                return docs
+        except Exception as exc:
+            last_error = exc
+    if last_error:
+        raise ValueError(f"อ่านไฟล์ CSV ไม่สำเร็จ: {last_error}") from last_error
+    raise ValueError("ไม่พบแถวข้อมูลในไฟล์ CSV")
+
+
+def load_and_split_csv(csv_path: str | Path):
+    csv_path = Path(csv_path)
+    docs = _load_csv_docs(csv_path)
+
+    with open(csv_path, "rb") as f:
+        document_id = hashlib.sha256(f.read()).hexdigest()
+
+    for index, doc in enumerate(docs):
+        row = doc.metadata.get("row", index)
+        try:
+            row = int(row)
+        except (TypeError, ValueError):
+            row = index
+        parts = []
+        for line in (doc.page_content or "").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if ":" in line:
+                key, value = line.split(":", 1)
+                parts.append(f"{key.strip()}: {value.strip()}")
+            else:
+                parts.append(line)
+        if parts:
+            doc.page_content = " | ".join(parts)
+        doc.metadata["pdf_name"] = csv_path.name
+        doc.metadata["document_id"] = document_id
+        doc.metadata["page"] = row
+
+    return _split_docs(docs)
+
+
+def load_and_split_file(path: str | Path):
+    path = Path(path)
+    suffix = path.suffix.lower()
+    if suffix == ".csv":
+        return load_and_split_csv(path)
+    if suffix == ".pdf":
+        return load_and_split_pdf(path)
+    raise ValueError("รองรับเฉพาะไฟล์ PDF และ CSV")

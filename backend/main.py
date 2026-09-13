@@ -28,7 +28,7 @@ from components.graph import graph_overview, related_terms, replace_graph
 from components.medical_graph import MEDICAL_GRAPH_NODES, MEDICAL_GRAPH_RELATIONSHIPS
 from components.mock_pdf_data import MOCK_PDF_NAME
 
-app = FastAPI(title="Parent-Child RAG")
+app = FastAPI(title="Medical RAG AI")
 
 app.add_middleware(
     CORSMiddleware,
@@ -85,8 +85,8 @@ def document_detail(document_id: str):
 @app.post("/upload")
 async def upload(file: UploadFile = File(...)):
     filename = Path(file.filename or "").name
-    if not filename.lower().endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="กรุณาอัปโหลดไฟล์ PDF เท่านั้น")
+    if Path(filename).suffix.lower() not in {".pdf", ".csv"}:
+        raise HTTPException(status_code=400, detail="กรุณาอัปโหลดไฟล์ PDF หรือ CSV")
 
     upload_dir = ROOT / "uploads"
     upload_dir.mkdir(exist_ok=True)
