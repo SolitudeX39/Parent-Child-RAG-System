@@ -41,6 +41,14 @@ export function sourceLocationLabel(
   return isCsvFile(filename) ? `แถว ${number}` : `หน้า ${number}`;
 }
 
+export async function deleteDocument(documentId: string) {
+  const res = await fetch(`${API}/documents/${encodeURIComponent(documentId)}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json() as Promise<{ name?: string }>;
+}
+
 export async function readError(res: Response) {
   try {
     const data = await res.json();

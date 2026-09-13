@@ -18,6 +18,7 @@ load_project_env()
 from components.chat_prompt import GRAPH_BUILD_PROMPTS, SUGGESTED_PROMPTS
 from components.graph_build import build_graph_from_prompt
 from components.database import (
+    delete_document,
     get_document,
     insert_into_database,
     list_documents,
@@ -80,6 +81,17 @@ def document_detail(document_id: str):
     if not detail:
         raise HTTPException(status_code=404, detail="ไม่พบเอกสาร")
     return detail
+
+
+@app.delete("/documents/{document_id}")
+def document_delete(document_id: str):
+    try:
+        deleted = delete_document(document_id)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    if not deleted:
+        raise HTTPException(status_code=404, detail="ไม่พบเอกสาร")
+    return {"status": "deleted", **deleted}
 
 
 @app.post("/upload")

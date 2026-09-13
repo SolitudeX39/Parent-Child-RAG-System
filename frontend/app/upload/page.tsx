@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import GraphView, { type GraphOverview } from "../GraphView";
-import { API, type DocumentItem, type DocumentPage, readError, sourceLocationLabel } from "../lib";
+import { API, deleteDocument, type DocumentItem, type DocumentPage, readError, sourceLocationLabel } from "../lib";
 
 type DocumentDetail = {
   name: string;
@@ -20,6 +20,7 @@ export default function UploadPage() {
   const [viewer, setViewer] = useState<DocumentDetail | null>(null);
   const [viewerLoading, setViewerLoading] = useState(false);
   const [activePage, setActivePage] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pageRefs = useRef<Record<number, HTMLElement | null>>({});
 
@@ -59,6 +60,26 @@ export default function UploadPage() {
     }
   }
 
+  async function removeDocument(doc: DocumentItem) {
+    if (!window.confirm(`ลบ ${doc.name} ออกจากคลัง?`)) return;
+    setError("");
+    setStatus("");
+    setDeletingId(doc.id);
+    try {
+      await deleteDocument(doc.id);
+      if (viewer?.id === doc.id) {
+        setViewer(null);
+        setActivePage(null);
+      }
+      await loadDocuments();
+      setStatus(`ลบ ${doc.name} แล้ว`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "ลบเอกสารไม่สำเร็จ");
+    } finally {
+      setDeletingId("");
+    }
+  }
+
   async function uploadFile(file: File) {
     const suffix = file.name.toLowerCase();
     if (!suffix.endsWith(".pdf") && !suffix.endsWith(".csv")) {
@@ -94,7 +115,7 @@ export default function UploadPage() {
           <p className="text-[10px] tracking-[0.28em] text-cyan-300">MEDICAL RAG AI</p>
           <h1 className="mt-2 text-3xl font-semibold text-white">อัปโหลดเอกสาร</h1>
           <p className="mt-2 text-sm text-slate-400">
-            อัปโหลด PDF หรือ CSV ได้หลายไฟล์ แล้วไปแทบ Dataset เพื่อดูสรุปคลังทั้งหมด
+            อัปโหลด PDF หรือ CSV ได้หลายไฟล์ และลบออกจากคลังได้จากรายการด้านล่าง
           </p>
         </div>
 
@@ -142,21 +163,29 @@ export default function UploadPage() {
           ) : (
             <ul className="space-y-2">
               {documents.map((doc) => (
-                <li key={doc.id}>
+                <li key={doc.id} className="flex items-stretch gap-2">
                   <button
                     type="button"
                     onClick={() => void openDocument(doc.id)}
-                    className={`w-full rounded-2xl border px-4 py-3 text-left text-sm leading-snug transition hover:border-cyan-300/40 ${
+                    className={`min-w-0 flex-1 rounded-2xl border px-4 py-3 text-left text-sm leading-snug transition hover:border-cyan-300/40 ${
                       viewer?.id === doc.id
                         ? "border-cyan-300/40 bg-cyan-300/10"
                         : "border-white/10 bg-white/5"
                     }`}
                   >
-                    <span className="block font-medium text-white">{doc.name}</span>
+                    <span className="block truncate font-medium text-white">{doc.name}</span>
                     <span className="mt-1 block text-xs text-slate-400">
                       กดเพื่อดูเนื้อหา
                       {typeof doc.chunks === "number" ? ` · ${doc.chunks} ช่วง` : ""}
                     </span>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={deletingId === doc.id}
+                    onClick={() => void removeDocument(doc)}
+                    className="rounded-2xl border border-rose-300/20 px-3 text-sm text-rose-200 hover:bg-rose-400/10 disabled:opacity-50"
+                  >
+                    {deletingId === doc.id ? "..." : "ลบ"}
                   </button>
                 </li>
               ))}

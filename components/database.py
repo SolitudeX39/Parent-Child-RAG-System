@@ -186,6 +186,41 @@ def list_documents() -> list[dict]:
         conn.close()
 
 
+def delete_document(document_id: str) -> dict | None:
+    conn = get_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT pdf_name, file_hash FROM documents WHERE file_hash = %s",
+            (document_id,),
+        )
+        row = cursor.fetchone()
+        if not row:
+            return None
+        cursor.execute(
+            """
+            DELETE FROM child_chunks
+            WHERE parent_id IN (
+                SELECT parent_id FROM parent_chunks WHERE file_hash = %s
+            )
+            """,
+            (document_id,),
+        )
+        children = cursor.rowcount
+        cursor.execute("DELETE FROM parent_chunks WHERE file_hash = %s", (document_id,))
+        parents = cursor.rowcount
+        cursor.execute("DELETE FROM documents WHERE file_hash = %s", (document_id,))
+        conn.commit()
+        return {
+            "name": row[0],
+            "id": row[1],
+            "parent_chunks": parents,
+            "child_chunks": children,
+        }
+    finally:
+        conn.close()
+
+
 def get_document(document_id: str) -> dict | None:
     conn = get_connection()
     try:

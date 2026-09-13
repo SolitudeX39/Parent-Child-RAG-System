@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
-import { API, datasetKind, type DocumentItem, type DocumentPage, readError, sourceLocationLabel } from "../lib";
+import { API, datasetKind, deleteDocument, type DocumentItem, type DocumentPage, readError, sourceLocationLabel } from "../lib";
 
 type DocumentDetail = {
   name: string;
@@ -13,12 +13,14 @@ type DocumentDetail = {
 
 function DatasetPageInner() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const selectedId = searchParams.get("id") || "";
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [detail, setDetail] = useState<DocumentDetail | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [detailLoading, setDetailLoading] = useState(false);
+  const [deletingId, setDeletingId] = useState("");
 
   const loadDocuments = useCallback(async () => {
     setLoading(true);
@@ -66,6 +68,21 @@ function DatasetPageInner() {
       cancelled = true;
     };
   }, [selectedId]);
+
+  async function removeDocument(doc: DocumentItem) {
+    if (!window.confirm(`ลบ ${doc.name} ออกจากคลัง?`)) return;
+    setDeletingId(doc.id);
+    setError("");
+    try {
+      await deleteDocument(doc.id);
+      if (selectedId === doc.id) router.push("/datasets");
+      await loadDocuments();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "ลบเอกสารไม่สำเร็จ");
+    } finally {
+      setDeletingId("");
+    }
+  }
 
   const totals = useMemo(() => {
     return documents.reduce(
@@ -148,10 +165,10 @@ function DatasetPageInner() {
                   {documents.map((doc) => {
                     const active = doc.id === selectedId;
                     return (
-                      <li key={doc.id}>
+                      <li key={doc.id} className="flex items-stretch gap-2">
                         <Link
                           href={`/datasets?id=${encodeURIComponent(doc.id)}`}
-                          className={`block rounded-2xl border px-4 py-3 transition ${
+                          className={`min-w-0 flex-1 rounded-2xl border px-4 py-3 transition ${
                             active
                               ? "border-cyan-300/40 bg-cyan-300/10"
                               : "border-white/10 bg-white/5 hover:border-cyan-300/30"
@@ -164,6 +181,14 @@ function DatasetPageInner() {
                             {typeof doc.children === "number" ? ` · ${doc.children} ชิ้นค้น` : ""}
                           </span>
                         </Link>
+                        <button
+                          type="button"
+                          disabled={deletingId === doc.id}
+                          onClick={() => void removeDocument(doc)}
+                          className="rounded-2xl border border-rose-300/20 px-3 text-sm text-rose-200 hover:bg-rose-400/10 disabled:opacity-50"
+                        >
+                          {deletingId === doc.id ? "..." : "ลบ"}
+                        </button>
                       </li>
                     );
                   })}
@@ -185,6 +210,7 @@ function DatasetPageInner() {
                         <th className="px-5 py-3 font-medium">ชนิด</th>
                         <th className="px-5 py-3 font-medium">ช่วงเนื้อหา</th>
                         <th className="px-5 py-3 font-medium">ชิ้นสำหรับค้น</th>
+                        <th className="px-5 py-3 font-medium">จัดการ</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -201,6 +227,16 @@ function DatasetPageInner() {
                           <td className="px-5 py-3 uppercase text-slate-400">{datasetKind(doc)}</td>
                           <td className="px-5 py-3">{doc.chunks ?? 0}</td>
                           <td className="px-5 py-3">{doc.children ?? 0}</td>
+                          <td className="px-5 py-3">
+                            <button
+                              type="button"
+                              disabled={deletingId === doc.id}
+                              onClick={() => void removeDocument(doc)}
+                              className="text-rose-200 hover:underline disabled:opacity-50"
+                            >
+                              ลบ
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
