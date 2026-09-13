@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="th" className={`${plexThai.variable} h-full antialiased`}>
+    <html lang="th" className={`${plexThai.variable} h-full antialiased`} suppressHydrationWarning>
       <body className={`${plexThai.className} min-h-full`}>
         <div className="flex h-dvh overflow-hidden">
           <AppTabs />

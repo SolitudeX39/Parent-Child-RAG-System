@@ -77,6 +77,7 @@ export default function Home() {
   const [graphFullscreen, setGraphFullscreen] = useState(false);
   const [graph, setGraph] = useState<GraphOverview | null>(null);
   const [graphLoading, setGraphLoading] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const pageRefs = useRef<Record<number, HTMLElement | null>>({});
   const modeMenuRef = useRef<HTMLDivElement>(null);
@@ -116,6 +117,10 @@ export default function Home() {
     setMessages(thread.messages as ChatMessage[]);
     setError("");
   }
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     const current = getCurrentThreadId();
@@ -248,6 +253,22 @@ export default function Home() {
     } finally {
       setBusy(false);
     }
+  }
+
+  if (!hydrated) {
+    return (
+      <div className="flex h-dvh overflow-hidden text-[var(--ink)]">
+        <main className="flex min-w-0 flex-1 flex-col">
+          <header className="flex items-center justify-between border-b border-white/10 px-4 py-3 md:px-6">
+            <div>
+              <p className="text-[10px] tracking-[0.24em] text-cyan-300">MEDICAL RAG AI</p>
+              <p className="font-semibold text-white">Chat</p>
+              <p className="text-xs text-slate-400">คุยจากเอกสารที่อัปโหลดไว้</p>
+            </div>
+          </header>
+        </main>
+      </div>
+    );
   }
 
   return (
