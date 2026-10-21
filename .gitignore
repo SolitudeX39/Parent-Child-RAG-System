@@ -6,3 +6,8 @@
 rag1.ipynb
 docker/docker-compose.yml
 .gitignore
+components/__pycache__/openrouter_rerank.cpython-312.pyc
+components/__pycache__/openrouter_rerank.cpython-312.pyc
+components/__pycache__/gemini_embedding.cpython-312.pyc
+components/__pycache__/database.cpython-312.pyc
+rag1.ipynb

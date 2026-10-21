@@ -68,6 +68,8 @@ def insert_into_database(pdf_path: str):
             (str(child_id), str(child_parent_id), child_text, embedding)
         )
     conn.commit()
+    cursor.close()
+    conn.close()
 
 
 def query_database(query):
@@ -108,7 +110,7 @@ def query_database(query):
 
     #Step 4: Reranking returned texts and retrieve highest scored texts for LLM's context. 
     results = reranker.rerank(query=query, documents=documents_payload, top_n=1) 
-    context = [result.get('source') for result in results]
+    context = "\n\n".join(result.get("source", "") for result in results)
 
     llm = ChatGoogleGenerativeAI(
     model="gemini-3.1-flash-lite",

@@ -1,0 +1,641 @@
+disease,common_symptom
+Carotid Sinus Syndrome,Syncope
+Carotid Sinus Syndrome,Cardiac Arrest
+Carotid Sinus Syndrome,Dizziness
+Carotid Sinus Syndrome,Fatigue
+Carotid Sinus Syndrome,Tinnitus
+Carotid Sinus Syndrome,Cerebral Ischemia
+Carotid Sinus Syndrome,Hypotension
+Cranial Osteomyelitis,Headache and fever
+Cranial Osteomyelitis,localized scalp redness
+Cranial Osteomyelitis,swelling
+Cranial Osteomyelitis,warmth
+Cranial Osteomyelitis,and pain
+Tuberculous Osteomyelitis,Low-grade fever
+Tuberculous Osteomyelitis,fatigue
+Tuberculous Osteomyelitis,night sweats
+Tuberculous Osteomyelitis,loss of appetite and weight
+Tuberculous Osteomyelitis,joint dysfunction
+Tuberculous Osteomyelitis,local swelling in limbs and joints due to tuberculosis
+Tuberculous Osteomyelitis,local pain
+Tuberculous Osteomyelitis,deformity
+Lipodystrophy,Hematuria
+Lipodystrophy,pyuria
+Lipodystrophy,acute abdominal pain
+Lipodystrophy,edema
+Lipodystrophy,fever
+Lipodystrophy,azotemia
+Lipodystrophy,hypertension
+Lipodystrophy,slow growth
+Lipodystrophy,fever
+Lipodystrophy,edema
+Vulvar Pemphigus,Blisters
+Vulvar Pemphigus,pain
+Vulvar Pemphigus,anorexia
+Vulvar Pemphigus,mucosal damage
+Vulvar Pemphigus,hypersensitivity
+Vulvar Pemphigus,and ulcers
+Desmoplastic Fibroma,Protrusion of bone surfaces
+Desmoplastic Fibroma,bone pain
+Desmoplastic Fibroma,swelling and pain in the long bones
+Pediatric renovascular hypertension,Headache
+Pediatric renovascular hypertension,dizziness
+Pediatric renovascular hypertension,restlessness
+Pediatric renovascular hypertension,vomiting
+Pediatric renovascular hypertension,heart failure
+Pediatric renovascular hypertension,renal failure
+Pediatric renovascular hypertension,urea clearance disorder
+Pediatric renovascular hypertension,nephrotic syndrome
+Pediatric renovascular hypertension,increased diastolic pressure
+Pediatric renovascular hypertension,fever
+Pediatric renovascular hypertension,outpatient hypertension
+Pediatric renovascular hypertension,edema
+Pulmonary Atresia,Palpitations
+Pulmonary Atresia,Shortness of breath
+Pulmonary Atresia,Cyanosis
+Migratory Arthralgia,Nausea
+Migratory Arthralgia,diarrhea
+Migratory Arthralgia,liver function abnormalities
+Migratory Arthralgia,joint contracture
+Migratory Arthralgia,jaundice
+Migratory Arthralgia,severe pain
+Migratory Arthralgia,ulcers
+Migratory Arthralgia,mucosal damage
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,Proteinuria
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,gingival hyperplasia
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,facial hirsutism
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,oliguria
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,impaired liver function
+Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs,and cylindruria
+Congenital Deficiency of the Gastric Muscular Layer,Acute abdomen
+Congenital Deficiency of the Gastric Muscular Layer,anorexia
+Congenital Deficiency of the Gastric Muscular Layer,vomiting
+Congenital Deficiency of the Gastric Muscular Layer,abdominal distention
+Congenital Deficiency of the Gastric Muscular Layer,dyspnea
+Congenital Deficiency of the Gastric Muscular Layer,abdominal pain
+Congenital Deficiency of the Gastric Muscular Layer,cyanosis
+Congenital Deficiency of the Gastric Muscular Layer,composite ulcers
+Congenital Deficiency of the Gastric Muscular Layer,shock
+Congenital Deficiency of the Gastric Muscular Layer,gastrointestinal emptying manifestations
+Congenital Deficiency of the Gastric Muscular Layer,edema
+Congenital Deficiency of the Gastric Muscular Layer,abnormal respiration
+Neonatal Brain Edema,Irritability
+Neonatal Brain Edema,somnolence
+Neonatal Brain Edema,coma
+Menopause and Cardiovascular Disease,Hypertension
+Menopause and Cardiovascular Disease,angina
+Menopause and Cardiovascular Disease,arrhythmia
+Menopause and Cardiovascular Disease,hemodynamic disorders
+Menopause and Cardiovascular Disease,menopause
+Multiple Myeloma-Associated Kidney Disease,Bone pain
+Multiple Myeloma-Associated Kidney Disease,pathological fractures
+Multiple Myeloma-Associated Kidney Disease,anemia
+Multiple Myeloma-Associated Kidney Disease,tendency to bleed
+Multiple Myeloma-Associated Kidney Disease,recurrent infections
+Pancreatic Polypeptide Tumor (PPoma),Abdominal pain
+Pancreatic Polypeptide Tumor (PPoma),weight loss
+Pancreatic Polypeptide Tumor (PPoma),diarrhea
+Pancreatic Polypeptide Tumor (PPoma),hepatomegaly
+Pancreatic Polypeptide Tumor (PPoma),abdominal mass
+Pancreatic Polypeptide Tumor (PPoma),skin rash
+Pancreatic Polypeptide Tumor (PPoma),ascites
+Chronic Lymphocytic Leukemia in the Elderly,Wasting
+Chronic Lymphocytic Leukemia in the Elderly,fatigue
+Chronic Lymphocytic Leukemia in the Elderly,night sweats
+Chronic Lymphocytic Leukemia in the Elderly,loss of appetite
+Chronic Lymphocytic Leukemia in the Elderly,low-grade fever
+Chronic Lymphocytic Leukemia in the Elderly,fever
+Chronic Lymphocytic Leukemia in the Elderly,anemia
+Chronic Lymphocytic Leukemia in the Elderly,persistent febrile
+Mucopolysaccharidosis Type II,Generalized hypotonia
+Mucopolysaccharidosis Type II,inability to roll over in bed
+Mucopolysaccharidosis Type II,poor head support
+Mucopolysaccharidosis Type II,numerous dysmorphic features
+Mucopolysaccharidosis Type II,and severe intellectual disability in some cases.
+Leukocyte Adhesion Deficiency Type II,Severe intellectual developmental delay
+Leukocyte Adhesion Deficiency Type II,short stature
+Leukocyte Adhesion Deficiency Type II,distinctive facial appearance
+Leukocyte Adhesion Deficiency Type II,skin infections
+Leukocyte Adhesion Deficiency Type II,absence of pus at infection sites
+Endocrine Hypertension,Dizziness
+Endocrine Hypertension,nausea
+Endocrine Hypertension,blurred vision
+Endocrine Hypertension,tinnitus
+Radiation-Induced Cardiac Damage,Fever
+Radiation-Induced Cardiac Damage,chest pain
+Radiation-Induced Cardiac Damage,chest tightness
+Radiation-Induced Cardiac Damage,dyspnea
+Radiation-Induced Cardiac Damage,refractory heart failure
+Radiation-Induced Cardiac Damage,pericardial effusion
+Radiation-Induced Cardiac Damage,atrial premature beats
+Radiation-Induced Cardiac Damage,electrophysiological abnormalities
+Radiation-Induced Cardiac Damage,pulsus paradoxus
+Radiation-Induced Cardiac Damage,no evident cardiac impulse in the precordial region
+Radiation-Induced Cardiac Damage,pleural effusion
+Radiation-Induced Cardiac Damage,abnormal respiration
+Paraquat Poisoning,Pain
+Paraquat Poisoning,burning sensation in the tongue
+Paraquat Poisoning,mouth
+Paraquat Poisoning,and pharynx
+Paraquat Poisoning,chest tightness
+Paraquat Poisoning,difficulty breathing
+Paraquat Poisoning,oral ulceration
+Paraquat Poisoning,vomiting
+Paraquat Poisoning,abdominal pain
+Paraquat Poisoning,hematuria
+Paraquat Poisoning,and proteinuria
+Non-ossifying Fibroma,Localized mild pain
+Non-ossifying Fibroma,tenderness
+Non-ossifying Fibroma,pathological fracture
+Premature Infant,Innate abdominal wall development deficiency
+Premature Infant,absence of contractions interval
+Premature Infant,periumbilical wall defect
+Premature Infant,edema
+Premature Infant,shock
+Premature Infant,diarrhea
+Premature Infant,nausea and vomiting
+Premature Infant,abdominal distention
+Premature Infant,thin skin
+Premature Infant,short nails
+Upper Airway Obstruction,Irritative dry cough
+Upper Airway Obstruction,wheezing
+Upper Airway Obstruction,difficulty breathing
+Upper Airway Obstruction,expression of severe discomfort
+Upper Airway Obstruction,scratching the throat
+Upper Airway Obstruction,inspiratory stridor
+Acute Gastroenteritis,Nausea and vomiting
+Acute Gastroenteritis,abdominal pain
+Acute Gastroenteritis,abdominal distension
+Acute Gastroenteritis,diarrhea
+Acute Gastroenteritis,fever and chills
+Flavobacterium Meningosepticum Pneumonia,Fever
+Flavobacterium Meningosepticum Pneumonia,vomiting
+Flavobacterium Meningosepticum Pneumonia,signs of meningeal irritation
+Flavobacterium Meningosepticum Pneumonia,syncope
+Flavobacterium Meningosepticum Pneumonia,cough
+Flavobacterium Meningosepticum Pneumonia,expectoration
+Flavobacterium Meningosepticum Pneumonia,pleural effusion
+Flavobacterium Meningosepticum Pneumonia,hypocalcemia
+Flavobacterium Meningosepticum Pneumonia,chest pain
+Flavobacterium Meningosepticum Pneumonia,interlobar fissures often presenting as arc-shaped drooping
+Bronchocentric Granulomatosis,Fever
+Bronchocentric Granulomatosis,cough
+Bronchocentric Granulomatosis,chest pain
+Bronchocentric Granulomatosis,mucopurulent sputum
+Bronchocentric Granulomatosis,fatigue
+Bronchocentric Granulomatosis,granuloma
+Bronchocentric Granulomatosis,vasculitis
+Bronchocentric Granulomatosis,eosinophilia
+Bronchocentric Granulomatosis,inflammatory cell infiltration
+Bronchocentric Granulomatosis,shortness of breath
+Rib Fracture,Chest pain
+Rib Fracture,hemoptysis
+Rib Fracture,pain at the fracture site
+Rib Fracture,shallow and rapid breathing
+Leprosy Uveitis,Skin sensory disturbance
+Leprosy Uveitis,peripheral nerve thickening
+Leprosy Uveitis,multiple maculopapular rashes
+Leprosy Uveitis,nodules or plaques
+Leprosy Uveitis,red eyes
+Leprosy Uveitis,eye pain
+Leprosy Uveitis,photophobia
+Leprosy Uveitis,tearing
+Leprosy Uveitis,blurry vision or diminished visual acuity
+Revision Total Joint Arthroplasty,Pain
+Revision Total Joint Arthroplasty,deformity
+Revision Total Joint Arthroplasty,and functional impairment
+Dentinogenesis Imperfecta in Children,Teeth are unusually small and translucent
+Dentinogenesis Imperfecta in Children,abnormal tooth color
+Dentinogenesis Imperfecta in Children,yellowing of teeth
+Dentinogenesis Imperfecta in Children,chalky white to brownish discolorations on teeth
+Dentinogenesis Imperfecta in Children,abnormal tooth shape
+Congenital Retrosternal Diaphragmatic Hernia,Sternal cleft
+Congenital Retrosternal Diaphragmatic Hernia,tenderness in the intercostal spaces
+Congenital Retrosternal Diaphragmatic Hernia,sunken lower sternum and ribcage upon inhalation
+Congenital Retrosternal Diaphragmatic Hernia,pectus carinatum when inhaling
+Congenital Retrosternal Diaphragmatic Hernia,abnormal thorax
+Congenital Retrosternal Diaphragmatic Hernia,intercostal neuralgia
+Congenital Retrosternal Diaphragmatic Hernia,pneumothorax
+Congenital Retrosternal Diaphragmatic Hernia,paradoxical abdominal respiration
+Congenital Retrosternal Diaphragmatic Hernia,chest deformity
+Congenital Retrosternal Diaphragmatic Hernia,absence of the central line of the upper abdominal wall
+Congenital Retrosternal Diaphragmatic Hernia,and elevated diaphragm
+Alveolar Osteitis,Severe pain and a strong
+Alveolar Osteitis,foul odor at the extraction site 2 to 3 days post-tooth extraction
+Pediatric Paroxysmal Tachycardia,Dizziness
+Pediatric Paroxysmal Tachycardia,syncope
+Pediatric Paroxysmal Tachycardia,bradycardia
+Pediatric Paroxysmal Tachycardia,vomiting
+Pediatric Paroxysmal Tachycardia,palpitations with fatigue
+Pediatric Paroxysmal Tachycardia,pale complexion
+Enterobiasis,Pruritus ani (anal itching)
+Enterobiasis,nausea and vomiting
+Enterobiasis,diarrhea
+Enterobiasis,abdominal pain
+Enterobiasis,constipation
+Enterobiasis,fever
+Enterobiasis,intestinal perforation
+Enterobiasis,cough
+Enterobiasis,and restlessness
+Intermittent Exophthalmos,miosis
+Intermittent Exophthalmos,ptosis
+Intermittent Exophthalmos,enophthalmos
+Intermittent Exophthalmos,exophthalmos
+Intermittent Exophthalmos,eye pain
+Intermittent Exophthalmos,visual impairment
+Intermittent Exophthalmos,extraocular metastasis
+Intermittent Exophthalmos,upward deviation and fixation of the eyeball
+Intermittent Exophthalmos,floating eyeball phenomenon
+Intermittent Exophthalmos,limited eye movement
+Hypernatremia,Thirst
+Hypernatremia,reduced urine output
+Hypernatremia,weakness
+Hypernatremia,nausea and vomiting
+Hypernatremia,elevated body temperature
+Hypernatremia,irritability
+Hypernatremia,restlessness or apathy in the later stages
+Hypernatremia,somnolence
+Hypernatremia,seizures
+Hypernatremia,epileptiform attacks
+Hypernatremia,coma
+Chromhidrosis,Anxiety
+Chromhidrosis,fear
+Chromhidrosis,damp-heat in spleen and stomach
+Chromhidrosis,colored sweat
+Chromhidrosis,sudden rage
+Air Embolism,Coma
+Air Embolism,cough
+Air Embolism,dyspnea
+Air Embolism,restlessness
+Air Embolism,mill wheel murmur
+Staphylococcus Aureus Marginal Keratitis,Eye pain
+Staphylococcus Aureus Marginal Keratitis,photophobia
+Staphylococcus Aureus Marginal Keratitis,foreign body sensation in the eye
+Staphylococcus Aureus Marginal Keratitis,conjunctival congestion
+Acetanilide Poisoning,Nausea and vomiting
+Acetanilide Poisoning,cyanosis
+Acetanilide Poisoning,headache
+Acetanilide Poisoning,tinnitus
+Acetanilide Poisoning,abdominal pain
+Acetanilide Poisoning,dizziness
+Acetanilide Poisoning,abnormal sweating
+Acetanilide Poisoning,coma
+Pregnancy with Atrial Septal Defect,Cardiac murmur
+Pregnancy with Atrial Septal Defect,palpitations after exertion
+Pregnancy with Atrial Septal Defect,arrhythmias
+Pregnancy with Atrial Septal Defect,shortness of breath and wheezing in pregnant women
+Progressive Bulbar Palsy,Difficulty swallowing
+Progressive Bulbar Palsy,slurred speech
+Progressive Bulbar Palsy,bulbar paralysis
+Progressive Bulbar Palsy,coughing while drinking
+Progressive Bulbar Palsy,muscle atrophy
+Progressive Bulbar Palsy,myogenic muscle weakness
+Progressive Bulbar Palsy,facial muscle weakness
+Progressive Bulbar Palsy,coughing
+Progressive Bulbar Palsy,hoarseness
+Progressive Bulbar Palsy,absence of gag reflex
+Tinea Cruris,Erythema on the inner side of the thighs
+Tinea Cruris,rash near the scrotum on the inner side of the groin
+Tinea Cruris,itching in the groin area
+Tinea Cruris,scaling
+Tinea Cruris,hyperpigmentation of the skin in the groin and inner thighs
+Tinea Cruris,pruritus
+Tinea Cruris,scrotal itching
+Tinea Cruris,itching of the vulva
+Tinea Cruris,papules
+Mycotoxicosis,Convulsions
+Mycotoxicosis,low-grade fever
+Mycotoxicosis,nausea
+Mycotoxicosis,abdominal pain
+Mycotoxicosis,diarrhea
+Mycotoxicosis,bloating
+Mycotoxicosis,enlarged liver
+Mycotoxicosis,jaundice
+Alcohol Withdrawal Syndrome,Tremors
+Alcohol Withdrawal Syndrome,fatigue
+Alcohol Withdrawal Syndrome,sweating
+Alcohol Withdrawal Syndrome,hyperreflexia
+Bartholin's Gland Cyst,Local burning sensation
+Bartholin's Gland Cyst,pain
+Bartholin's Gland Cyst,vulvar burning
+Bartholin's Gland Cyst,ulceration
+Hemoglobin M Disease,Anemia
+Hemoglobin M Disease,Cyanosis
+Neonatal Hypoglycemia,Decreased responsiveness
+Neonatal Hypoglycemia,refusal to feed
+Neonatal Hypoglycemia,hypothermia
+Neonatal Hypoglycemia,pallor
+Neonatal Hypoglycemia,hypoglycemic coma
+Neonatal Hypoglycemia,seizures
+Neonatal Hypoglycemia,convulsions
+Neonatal Hypoglycemia,cyanosis
+Neonatal Hypoglycemia,prone to fainting
+Neonatal Hypoglycemia,trembling
+Neonatal Hypoglycemia,lethargy
+Trench Fever,Maculopapular rash
+Trench Fever,macular rash
+Trench Fever,abdominal pain
+Trench Fever,bone pain
+Trench Fever,muscle pain
+Trench Fever,meningitis
+Trench Fever,headache
+Trench Fever,dizziness
+Elderly Acute Appendicitis,Lower right abdominal colic
+Elderly Acute Appendicitis,nausea and vomiting
+Elderly Acute Appendicitis,fever with chills
+Elderly Acute Appendicitis,tenderness in the lower right abdomen with rebound pain
+Lacrimal Sac Tumor,Swelling in the lacrimal sac area
+Lacrimal Sac Tumor,epiphora
+Lacrimal Sac Tumor,chronic dacryocystitis
+Lacrimal Sac Tumor,and swelling of the lacrimal sac
+Congenital Laryngeal Atresia,Absence of respiration and cry immediately after birth
+Missed Abortion,Disappearance of pregnancy reactions
+Missed Abortion,vaginal bleeding
+Missed Abortion,abdominal pain
+Dentigerous Cyst,Jaw bulging
+Dentigerous Cyst,bone thinning
+Dentigerous Cyst,cyst enlargement
+Ischemic Polymorphic Ventricular Tachycardia,Tachycardia
+Ischemic Polymorphic Ventricular Tachycardia,palpitations
+Ischemic Polymorphic Ventricular Tachycardia,syncope
+Ischemic Polymorphic Ventricular Tachycardia,chest tightness
+Ischemic Polymorphic Ventricular Tachycardia,chest pain
+Ischemic Polymorphic Ventricular Tachycardia,sudden death
+Ischemic Polymorphic Ventricular Tachycardia,ectopic tachycardia
+Gastric Ulcer,Stomach pain
+Gastric Ulcer,vomiting of blood or black stools
+Gastric Ulcer,hidden pain in the stomach area
+Hyperlipoproteinemia,Lipid deposition disorders
+Hyperlipoproteinemia,small yellowish papules
+Hyperlipoproteinemia,hyperlipidemic vascular damage
+Hyperlipoproteinemia,atherosclerosis
+Hyperlipoproteinemia,dyslipidemia
+Neonatal Hemolytic Disease,Fetal edema
+Neonatal Hemolytic Disease,pallor
+Neonatal Hemolytic Disease,skin petechiae
+Neonatal Hemolytic Disease,pleural effusion
+Neonatal Hemolytic Disease,ascites
+Neonatal Hemolytic Disease,faint heart sounds
+Neonatal Hemolytic Disease,tachycardia
+Neonatal Hemolytic Disease,respiratory distress
+Neonatal Hemolytic Disease,jaundice
+Neonatal Hemolytic Disease,anemia
+Neonatal Hemolytic Disease,fever
+Neonatal Hemolytic Disease,seizures
+Neonatal Hemolytic Disease,opisthotonus
+Orbital Disease,Redness
+Orbital Disease,Swelling
+Orbital Disease,Dryness
+Orbital Disease,Stinging
+Simple Pulmonary Eosinophilia,Cough
+Simple Pulmonary Eosinophilia,headache
+Simple Pulmonary Eosinophilia,fatigue
+Simple Pulmonary Eosinophilia,symptoms of upper respiratory tract catarrh
+Simple Pulmonary Eosinophilia,night sweats
+Simple Pulmonary Eosinophilia,low fever
+Simple Pulmonary Eosinophilia,bloody sputum
+Simple Pulmonary Eosinophilia,coughing up phlegm
+Simple Pulmonary Eosinophilia,lemon-yellow sputum
+Simple Pulmonary Eosinophilia,increased eosinophils
+Simple Pulmonary Eosinophilia,wheezing
+Simple Pulmonary Eosinophilia,pulmonary rales
+Arthralgia Syndrome,joint pain
+Arthralgia Syndrome,joint swelling
+Arthralgia Syndrome,joint deformity
+Arthralgia Syndrome,fever with joint swelling and pain
+Cianci's Phenomenon,Palpitations
+Cianci's Phenomenon,chest tightness
+Cianci's Phenomenon,difficulty breathing
+Bartholin's Gland Cyst,Cyst
+Bartholin's Gland Cyst,feeling of vulvar prolapse
+Bartholin's Gland Cyst,vulvar swelling
+Bartholin's Gland Cyst,difficulty in intercourse
+Neurodermatitis,Numbness on the anterolateral aspect of the thigh
+Neurodermatitis,formication
+Neurodermatitis,bromhidrosis
+Neurodermatitis,and fear
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,Insidious onset of upper abdominal pain
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,bloating
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,indigestion
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,nausea and vomiting
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,acid reflux
+Mucosa-associated Lymphoid Tissue (MALT) Lymphoma,and weight loss
+Sudden Infant Death Syndrome (SIDS),Unexplained death
+Vitamin B12 Deficiency Anemia,Pale
+Vitamin B12 Deficiency Anemia,sallow complexion
+Vitamin B12 Deficiency Anemia,fatigue
+Vitamin B12 Deficiency Anemia,weakness
+Vitamin B12 Deficiency Anemia,fine and dry yellow hair
+Vitamin B12 Deficiency Anemia,mild facial edema
+Vitamin B12 Deficiency Anemia,anorexia
+Vitamin B12 Deficiency Anemia,nausea
+Vitamin B12 Deficiency Anemia,vomiting
+Fibroadenoma of the Breast,Subcutaneous nodules with a hard texture similar to elephant skin on the female breast surface
+Fibroadenoma of the Breast,redness
+Fibroadenoma of the Breast,swelling
+Fibroadenoma of the Breast,heat pain in the breast
+Fibroadenoma of the Breast,and smooth
+Fibroadenoma of the Breast,firm spherical masses within the breast
+Selenium and Its Compound-Induced Dermatosis,Skin and mucosal bleeding
+Selenium and Its Compound-Induced Dermatosis,chemical burns
+Selenium and Its Compound-Induced Dermatosis,nail abnormalities
+Selenium and Its Compound-Induced Dermatosis,hair loss
+Anal Papillitis,Anal discomfort
+Anal Papillitis,hidden anal pain
+Anal Papillitis,anal itching
+Anal Papillitis,prone to dampness
+Pediatric Anemia,Pale or sallow skin and mucous membranes
+Pediatric Anemia,fatigue and weakness
+Pediatric Anemia,irritability and crying
+Pediatric Anemia,listlessness and disinterest in activities
+Pediatric Anemia,reduced appetite
+Pediatric Anemia,older children may complain of dizziness
+Pediatric Anemia,darkening before the eyes
+Pediatric Anemia,and tinnitus
+Red Threadlike Veins,itchy eyes
+Red Threadlike Veins,dry
+Red Threadlike Veins,sour
+Red Threadlike Veins,and swollen sensation
+Red Threadlike Veins,fatigue
+Red Threadlike Veins,granular appearance of the palpebral conjunctiva
+Reflex Sympathetic Dystrophy Syndrome (RSDS),Thinning and shiny skin
+Reflex Sympathetic Dystrophy Syndrome (RSDS),abnormal hair growth
+Reflex Sympathetic Dystrophy Syndrome (RSDS),pigment changes
+Reflex Sympathetic Dystrophy Syndrome (RSDS),nail abnormalities
+Reflex Sympathetic Dystrophy Syndrome (RSDS),numbness in the extremities
+Reflex Sympathetic Dystrophy Syndrome (RSDS),pain or strange sensations
+Reflex Sympathetic Dystrophy Syndrome (RSDS),tenderness
+Reflex Sympathetic Dystrophy Syndrome (RSDS),soft tissue swelling
+Manganese Poisoning,Oral ulcers
+Manganese Poisoning,nausea and vomiting
+Manganese Poisoning,stomach pain
+Manganese Poisoning,weakness in the lower limbs
+Manganese Poisoning,fever
+Manganese Poisoning,bloody stools
+Manganese Poisoning,muscle tremors and paralysis
+Manganese Poisoning,cough
+Manganese Poisoning,sore throat
+Manganese Poisoning,mental disorders
+Manganese Poisoning,shock
+Manganese Poisoning,respiratory distress
+Paget's Disease of the Breast,Nipple itching
+Paget's Disease of the Breast,burning sensation
+Paget's Disease of the Breast,rough and thickened skin with flaking
+Paget's Disease of the Breast,erosion
+Paget's Disease of the Breast,exudation
+Paget's Disease of the Breast,and ulceration
+Peroneal Muscular Atrophy,Muscle atrophy
+Peroneal Muscular Atrophy,myogenic muscle weakness
+Peroneal Muscular Atrophy,abnormal tendon reflexes
+Peroneal Muscular Atrophy,sensory disturbances
+Peroneal Muscular Atrophy,adolescent scoliosis
+Peroneal Muscular Atrophy,childhood scoliosis
+Peroneal Muscular Atrophy,foot deformities
+Peroneal Muscular Atrophy,spinal deformities
+Peroneal Muscular Atrophy,steppage gait
+Peroneal Muscular Atrophy,glove or stocking type of superficial and deep sensory disturbances
+Peroneal Muscular Atrophy,nutritional disorders
+Peroneal Muscular Atrophy,pes cavus
+Pediatric Nephrotic Syndrome,Edema
+Pediatric Nephrotic Syndrome,ascites
+Pediatric Nephrotic Syndrome,frequent urination
+Pediatric Nephrotic Syndrome,urgent urination
+Pediatric Nephrotic Syndrome,painful urination
+Pediatric Nephrotic Syndrome,abnormal urine volume
+Metabolic Acidosis in the Elderly,Deepened respiration
+Metabolic Acidosis in the Elderly,fatigue
+Metabolic Acidosis in the Elderly,dizziness
+Metabolic Acidosis in the Elderly,palpitations
+Orbital Periostitis,Absence of pupillary light reflex
+Orbital Periostitis,inflammation
+Orbital Periostitis,cellulitis
+Orbital Periostitis,ectropion
+Orbital Periostitis,conjunctival hyperemia
+Orbital Periostitis,ptosis
+Orbital Periostitis,visual impairment
+Cerebral Paragonimiasis,dizziness
+Cerebral Paragonimiasis,headache
+Cerebral Paragonimiasis,vision impairment
+Cerebral Paragonimiasis,hemiplegia
+Cerebral Paragonimiasis,diarrhea
+Cerebral Paragonimiasis,fever
+Cerebral Paragonimiasis,abdominal pain
+Cerebral Paragonimiasis,seizures and seizure-like episodes
+Cerebral Paragonimiasis,subcutaneous nodules
+Cerebral Paragonimiasis,cough
+Cerebral Paragonimiasis,blood-streaked sputum
+Cerebral Paragonimiasis,coughing up rust-colored sputum
+Multifocal Primary Carcinoma of the Female Reproductive Tract,Abnormal bleeding
+Multifocal Primary Carcinoma of the Female Reproductive Tract,abdominal pain or bloating
+Vasculitis,Chilliness
+Vasculitis,cold intolerance
+Vasculitis,numbness
+Vasculitis,intermittent claudication
+Vasculitis,rest pain
+Vasculitis,decreased skin temperature
+Vasculitis,dry gangrene
+Vasculitis,disappearance of dorsal foot artery pulsation
+Optic Neuritis,Acute visual impairment
+Optic Neuritis,decline in vision
+Psoriasis,Erythema
+Psoriasis,papules
+Psoriasis,and multiple scales
+Geriatric Venous Thrombosis,Venous thrombosis
+Geriatric Venous Thrombosis,heat pain
+Geriatric Venous Thrombosis,local venous tenderness
+Geriatric Venous Thrombosis,gastrocnemius muscle tenderness
+Geriatric Venous Thrombosis,pain
+Geriatric Venous Thrombosis,calf swelling
+Geriatric Venous Thrombosis,calf edema
+Geriatric Venous Thrombosis,referred pain
+Geriatric Venous Thrombosis,lower limb swelling and fatigue
+Geriatric Venous Thrombosis,pallid skin
+Pelvic Connective Tissue Inflammation,High fever
+Pelvic Connective Tissue Inflammation,lower abdominal pain
+Pelvic Connective Tissue Inflammation,sensation of heaviness in the lower abdomen
+Pelvic Connective Tissue Inflammation,back pain
+Pelvic Connective Tissue Inflammation,pain during intercourse
+Pelvic Connective Tissue Inflammation,abnormal vaginal discharge
+Chronic Constrictive Pericarditis,Jugular venous distention
+Chronic Constrictive Pericarditis,hepatomegaly
+Chronic Constrictive Pericarditis,ascites
+Chronic Constrictive Pericarditis,pleural effusion
+Chronic Constrictive Pericarditis,nausea
+Chronic Constrictive Pericarditis,vomiting
+Chronic Constrictive Pericarditis,edema
+Chronic Constrictive Pericarditis,dyspnea
+Chronic Constrictive Pericarditis,oliguria
+Chronic Constrictive Pericarditis,fatigue
+Chronic Constrictive Pericarditis,shortness of breath
+Chronic Constrictive Pericarditis,abdominal bloating
+Acute Autonomic Dysregulation,Pupil abnormalities
+Acute Autonomic Dysregulation,reduced or absent secretion of tears
+Acute Autonomic Dysregulation,saliva
+Acute Autonomic Dysregulation,and sweat
+Acute Autonomic Dysregulation,nausea and vomiting
+Acute Autonomic Dysregulation,urinary retention
+Apical Hypertrophic Cardiomyopathy,Chest pain
+Apical Hypertrophic Cardiomyopathy,chest tightness
+Apical Hypertrophic Cardiomyopathy,palpitations
+Apical Hypertrophic Cardiomyopathy,dizziness
+Apical Hypertrophic Cardiomyopathy,fatigue
+Apical Hypertrophic Cardiomyopathy,abnormal heart sounds
+Apical Hypertrophic Cardiomyopathy,systolic murmur
+Apical Hypertrophic Cardiomyopathy,diffuse apical impulse
+Apical Hypertrophic Cardiomyopathy,sudden death
+Acrodermatitis Enteropathica,Vesicles
+Acrodermatitis Enteropathica,diarrhea
+Acrodermatitis Enteropathica,hair loss
+Acrodermatitis Enteropathica,lack of appetite
+Acrodermatitis Enteropathica,abdominal distention
+Acrodermatitis Enteropathica,alopecia
+Acrodermatitis Enteropathica,cognitive developmental delay
+Acrodermatitis Enteropathica,infectious rhinitis
+Acrodermatitis Enteropathica,pharyngitis
+Acrodermatitis Enteropathica,glossitis
+Acrodermatitis Enteropathica,gingivitis
+Acrodermatitis Enteropathica,pustules
+Positional Vertigo,Cold sweats
+Positional Vertigo,nausea
+Positional Vertigo,dizziness
+Positional Vertigo,positional vertigo
+Positional Vertigo,rotational vertigo
+Positional Vertigo,severe dizziness with instability in standing
+Congenital Duodenal Atresia,Abdominal pain
+Congenital Duodenal Atresia,nausea
+Congenital Duodenal Atresia,vomiting
+Auricular Trauma,Pain
+Auricular Trauma,Bleeding
+Skin Cyst,Cyst
+Skin Cyst,skin adhesion
+Skin Cyst,squamous cell carcinoma
+Skin Cyst,secondary infection
+Scleral Staphyloma,Decreased vision
+Scleral Staphyloma,enlargement of the eyeball
+Scleral Staphyloma,dryness
+Alcohol-Related Psychiatric Disorders,Alcohol addiction
+Alcohol-Related Psychiatric Disorders,nausea and vomiting
+Alcohol-Related Psychiatric Disorders,drowsiness
+Alcohol-Related Psychiatric Disorders,coma
+Alcohol-Related Psychiatric Disorders,slurred speech
+Alcohol-Related Psychiatric Disorders,facial flushing
+Alcohol-Related Psychiatric Disorders,hallucinations
+Alcohol-Related Psychiatric Disorders,consciousness disorders
+Yersinia Enterocolitica and Yersinia Pseudotuberculosis Pneumonia,Persistent fever
+Yersinia Enterocolitica and Yersinia Pseudotuberculosis Pneumonia,coughing
+Yersinia Enterocolitica and Yersinia Pseudotuberculosis Pneumonia,shortness of breath
+Yersinia Enterocolitica and Yersinia Pseudotuberculosis Pneumonia,and abdominal ascites
+Hepatic Hemangioma,Abdominal mass
+Hepatic Hemangioma,upper right abdominal dull pain and discomfort
+Hepatic Hemangioma,loss of appetite
+Hepatic Hemangioma,nausea
+Hepatic Hemangioma,vomiting
+Hepatic Hemangioma,belching
+Hepatic Hemangioma,postprandial fullness
+Hepatic Hemangioma,difficulty breathing
+Hepatic Hemangioma,bleeding can cause severe pain and shock
+CD30-Positive Cutaneous T-cell Lymphoma,The disease often presents with solitary
+CD30-Positive Cutaneous T-cell Lymphoma,firm nodules. The lesions are typically solid
+CD30-Positive Cutaneous T-cell Lymphoma,ranging in color from red to purple
+CD30-Positive Cutaneous T-cell Lymphoma,and can grow up to 10 cm in diameter. There is no preferential location for these lesions
+CD30-Positive Cutaneous T-cell Lymphoma,and they frequently recur on the skin.

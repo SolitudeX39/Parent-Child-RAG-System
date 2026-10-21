@@ -1,0 +1,1435 @@
+@prefix disease: <http://example.org/medical/disease/> .
+@prefix med: <http://example.org/medical/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix umls: <http://linkedlifedata.com/resource/umls/id/> .
+
+disease:acetanilide_poisoning a med:Disease ;
+    rdfs:label "Acetanilide Poisoning" ;
+    med:has_symptom umls:C0000737,
+        umls:C0009421,
+        umls:C0010520,
+        umls:C0012833,
+        umls:C0018681,
+        umls:C0027497,
+        umls:C0038990,
+        umls:C0040264,
+        umls:C0042963,
+        umls:C0205161 .
+
+disease:acute_gastroenteritis a med:Disease ;
+    rdfs:label "Acute Gastroenteritis" ;
+    med:has_symptom umls:C0000731,
+        umls:C0000737,
+        umls:C0011991,
+        umls:C0015967,
+        umls:C0027497,
+        umls:C0042963,
+        umls:C0085593 .
+
+disease:air_embolism a med:Disease ;
+    rdfs:label "Air Embolism" ;
+    med:has_symptom <http://example.org/medical/symptom/mill_wheel>,
+        umls:C0009421,
+        umls:C0010200,
+        umls:C0013404,
+        umls:C0085631 .
+
+disease:alcohol_withdrawal_syndrome a med:Disease ;
+    rdfs:label "Alcohol Withdrawal Syndrome" ;
+    med:has_symptom umls:C0015672,
+        umls:C0038990,
+        umls:C0040822,
+        umls:C0151889 .
+
+disease:alveolar_osteitis a med:Disease ;
+    rdfs:label "Alveolar Osteitis" ;
+    med:has_symptom umls:C0040440,
+        umls:C0185115,
+        umls:C0237137,
+        umls:C0278140,
+        umls:C0439228,
+        umls:C0442821 .
+
+<http://example.org/medical/disease/bartholin's_gland_cyst> a med:Disease ;
+    rdfs:label "Bartholin's Gland Cyst" ;
+    med:has_symptom umls:C0030193,
+        umls:C0036658,
+        umls:C0041582,
+        umls:C0205276,
+        umls:C0406670 .
+
+disease:bronchocentric_granulomatosis a med:Disease ;
+    rdfs:label "Bronchocentric Granulomatosis" ;
+    med:has_symptom umls:C0008031,
+        umls:C0010200,
+        umls:C0014457,
+        umls:C0015672,
+        umls:C0015967,
+        umls:C0018188,
+        umls:C0042384,
+        umls:C0349588,
+        umls:C0440752,
+        umls:C0455206 .
+
+disease:carotid_sinus_syndrome a med:Disease ;
+    rdfs:label "Carotid Sinus Syndrome" ;
+    med:has_symptom umls:C0007785,
+        umls:C0012833,
+        umls:C0015672,
+        umls:C0018790,
+        umls:C0020649,
+        umls:C0039070,
+        umls:C0040264 .
+
+disease:chromhidrosis a med:Disease ;
+    rdfs:label "Chromhidrosis" ;
+    med:has_symptom <http://example.org/medical/symptom/damp-heat>,
+        <http://example.org/medical/symptom/sudden_rage>,
+        umls:C0003467,
+        umls:C0015726,
+        umls:C0037993,
+        umls:C0038351,
+        umls:C0038984,
+        umls:C0522507 .
+
+disease:chronic_lymphocytic_leukemia_in_the_elderly a med:Disease ;
+    rdfs:label "Chronic Lymphocytic Leukemia in the Elderly" ;
+    med:has_symptom umls:C0002871,
+        umls:C0003123,
+        umls:C0006625,
+        umls:C0015672,
+        umls:C0015967,
+        umls:C0028081,
+        umls:C0205322,
+        umls:C1518005 .
+
+disease:congenital_deficiency_of_the_gastric_muscular_layer a med:Disease ;
+    rdfs:label "Congenital Deficiency of the Gastric Muscular Layer" ;
+    med:has_symptom umls:C0000727,
+        umls:C0000731,
+        umls:C0000737,
+        umls:C0003123,
+        umls:C0010520,
+        umls:C0013404,
+        umls:C0013604,
+        umls:C0035203,
+        umls:C0036974,
+        umls:C0042963,
+        umls:C0205161,
+        umls:C0205199,
+        umls:C0205319,
+        umls:C0521362 .
+
+disease:congenital_retrosternal_diaphragmatic_hernia a med:Disease ;
+    rdfs:label "Congenital Retrosternal Diaphragmatic Hernia" ;
+    med:has_symptom <http://example.org/medical/symptom/spaces>,
+        umls:C0004048,
+        umls:C0011980,
+        umls:C0032326,
+        umls:C0038293,
+        umls:C0158731,
+        umls:C0205250,
+        umls:C0205310,
+        umls:C0222762,
+        umls:C0231898,
+        umls:C0234233,
+        umls:C0238983,
+        umls:C0332197,
+        umls:C0344306,
+        umls:C0423224,
+        umls:C0836916,
+        umls:C1145640,
+        umls:C2931507,
+        umls:C4021797,
+        umls:C5686136 .
+
+disease:cranial_osteomyelitis a med:Disease ;
+    rdfs:label "Cranial Osteomyelitis" ;
+    med:has_symptom umls:C0013604,
+        umls:C0015967,
+        umls:C0018681,
+        umls:C0030193,
+        umls:C0036270,
+        umls:C0392197,
+        umls:C0392752 .
+
+disease:dentinogenesis_imperfecta_in_children a med:Disease ;
+    rdfs:label "Dentinogenesis Imperfecta in Children" ;
+    med:has_symptom umls:C0007457,
+        umls:C0022346,
+        umls:C0040426,
+        umls:C0040434,
+        umls:C0205161,
+        umls:C0332572,
+        umls:C0475833,
+        umls:C0522503,
+        umls:C0700321 .
+
+disease:desmoplastic_fibroma a med:Disease ;
+    rdfs:label "Desmoplastic Fibroma" ;
+    med:has_symptom umls:C0005931,
+        umls:C0013604,
+        umls:C0030193,
+        umls:C0151825,
+        umls:C0205148,
+        umls:C0222647,
+        umls:C0333056 .
+
+disease:endocrine_hypertension a med:Disease ;
+    rdfs:label "Endocrine Hypertension" ;
+    med:has_symptom umls:C0012833,
+        umls:C0027497,
+        umls:C0040264,
+        umls:C0344232 .
+
+disease:enterobiasis a med:Disease ;
+    rdfs:label "Enterobiasis" ;
+    med:has_symptom umls:C0000737,
+        umls:C0003461,
+        umls:C0009806,
+        umls:C0010200,
+        umls:C0011991,
+        umls:C0015967,
+        umls:C0021845,
+        umls:C0027497,
+        umls:C0033774,
+        umls:C0033775,
+        umls:C0042963,
+        umls:C0085631 .
+
+disease:flavobacterium_meningosepticum_pneumonia a med:Disease ;
+    rdfs:label "Flavobacterium Meningosepticum Pneumonia" ;
+    med:has_symptom <http://example.org/medical/symptom/arc-shaped>,
+        <http://example.org/medical/symptom/interlobar_fissures>,
+        umls:C0008031,
+        umls:C0010200,
+        umls:C0015967,
+        umls:C0020598,
+        umls:C0025287,
+        umls:C0032227,
+        umls:C0038056,
+        umls:C0039070,
+        umls:C0042963,
+        umls:C0427055 .
+
+disease:hemoglobin_m_disease a med:Disease ;
+    rdfs:label "Hemoglobin M Disease" ;
+    med:has_symptom umls:C0002871,
+        umls:C0010520 .
+
+disease:hypernatremia a med:Disease ;
+    rdfs:label "Hypernatremia" ;
+    med:has_symptom umls:C0004093,
+        umls:C0005903,
+        umls:C0009421,
+        umls:C0013144,
+        umls:C0014544,
+        umls:C0022107,
+        umls:C0027497,
+        umls:C0036572,
+        umls:C0042036,
+        umls:C0042963,
+        umls:C0085631,
+        umls:C0085632,
+        umls:C0205250,
+        umls:C0392756,
+        umls:C1306673,
+        umls:C1709366 .
+
+disease:intermittent_exophthalmos a med:Disease ;
+    rdfs:label "Intermittent Exophthalmos" ;
+    med:has_symptom <http://example.org/medical/symptom/extraocular_metastasis>,
+        umls:C0005745,
+        umls:C0014306,
+        umls:C0015300,
+        umls:C0015392,
+        umls:C0026205,
+        umls:C0042798,
+        umls:C0151827,
+        umls:C0185023,
+        umls:C0205419,
+        umls:C0522328,
+        umls:C1708071,
+        umls:C1882365 .
+
+disease:leprosy_uveitis a med:Disease ;
+    rdfs:label "Leprosy Uveitis" ;
+    med:has_symptom umls:C0028259,
+        umls:C0031119,
+        umls:C0039409,
+        umls:C0042812,
+        umls:C0085636,
+        umls:C0151827,
+        umls:C0152027,
+        umls:C0205216,
+        umls:C0235267,
+        umls:C0332461,
+        umls:C0344232,
+        umls:C0423791 .
+
+disease:leukocyte_adhesion_deficiency_type_ii a med:Disease ;
+    rdfs:label "Leukocyte Adhesion Deficiency Type II" ;
+    med:has_symptom umls:C0013336,
+        umls:C0015450,
+        umls:C0034161,
+        umls:C0037278,
+        umls:C0205082,
+        umls:C0233426,
+        umls:C0332197,
+        umls:C0557874,
+        umls:C0578491 .
+
+disease:lipodystrophy a med:Disease ;
+    rdfs:label "Lipodystrophy" ;
+    med:has_symptom umls:C0000727,
+        umls:C0013604,
+        umls:C0015967,
+        umls:C0018965,
+        umls:C0020538,
+        umls:C0034359,
+        umls:C0242528,
+        umls:C4086857 .
+
+disease:menopause_and_cardiovascular_disease a med:Disease ;
+    rdfs:label "Menopause and Cardiovascular Disease" ;
+    med:has_symptom <http://example.org/medical/symptom/hemodynamic_disorders>,
+        umls:C0002962,
+        umls:C0003811,
+        umls:C0020538,
+        umls:C0025320 .
+
+disease:migratory_arthralgia a med:Disease ;
+    rdfs:label "Migratory Arthralgia" ;
+    med:has_symptom <http://example.org/medical/symptom/mucosal_damage>,
+        umls:C0009918,
+        umls:C0011991,
+        umls:C0022346,
+        umls:C0027497,
+        umls:C0041582,
+        umls:C0086565,
+        umls:C0278140 .
+
+disease:mucopolysaccharidosis_type_ii a med:Disease ;
+    rdfs:label "Mucopolysaccharidosis Type II" ;
+    med:has_symptom <http://example.org/medical/symptom/poor_head_support>,
+        <http://example.org/medical/symptom/roll>,
+        umls:C0004916,
+        umls:C0205082,
+        umls:C0432072,
+        umls:C0868928,
+        umls:C1858120,
+        umls:C3714756 .
+
+disease:multiple_myeloma-associated_kidney_disease a med:Disease ;
+    rdfs:label "Multiple Myeloma-Associated Kidney Disease" ;
+    med:has_symptom umls:C0002871,
+        umls:C0016663,
+        umls:C0019080,
+        umls:C0151825,
+        umls:C0239998 .
+
+disease:mycotoxicosis a med:Disease ;
+    rdfs:label "Mycotoxicosis" ;
+    med:has_symptom umls:C0000731,
+        umls:C0000737,
+        umls:C0011991,
+        umls:C0015967,
+        umls:C0019209,
+        umls:C0022346,
+        umls:C0027497,
+        umls:C0036572,
+        umls:C1518005 .
+
+disease:neonatal_brain_edema a med:Disease ;
+    rdfs:label "Neonatal Brain Edema" ;
+    med:has_symptom umls:C0009421,
+        umls:C0013144,
+        umls:C0022107 .
+
+disease:neonatal_hypoglycemia a med:Disease ;
+    rdfs:label "Neonatal Hypoglycemia" ;
+    med:has_symptom umls:C0009421,
+        umls:C0010520,
+        umls:C0020616,
+        umls:C0020672,
+        umls:C0023380,
+        umls:C0030232,
+        umls:C0033422,
+        umls:C0036572,
+        umls:C0039070,
+        umls:C0080100,
+        umls:C0204695,
+        umls:C0205216,
+        umls:C0234369 .
+
+disease:non-ossifying_fibroma a med:Disease ;
+    rdfs:label "Non-ossifying Fibroma" ;
+    med:has_symptom <http://example.org/medical/symptom/localized_mild_pain>,
+        umls:C0016663,
+        umls:C0234233 .
+
+disease:pancreatic_polypeptide_tumor_\(ppoma\) a med:Disease ;
+    rdfs:label "Pancreatic Polypeptide Tumor (PPoma)" ;
+    med:has_symptom umls:C0000734,
+        umls:C0000737,
+        umls:C0003962,
+        umls:C0011991,
+        umls:C0015230,
+        umls:C0019209,
+        umls:C1262477 .
+
+disease:paraquat_poisoning a med:Disease ;
+    rdfs:label "Paraquat Poisoning" ;
+    med:has_symptom umls:C0000737,
+        umls:C0013404,
+        umls:C0018965,
+        umls:C0030193,
+        umls:C0031354,
+        umls:C0033687,
+        umls:C0036658,
+        umls:C0040408,
+        umls:C0042963,
+        umls:C0085624,
+        umls:C0149745,
+        umls:C0226896,
+        umls:C0232292 .
+
+disease:pediatric_paroxysmal_tachycardia a med:Disease ;
+    rdfs:label "Pediatric Paroxysmal Tachycardia" ;
+    med:has_symptom umls:C0012833,
+        umls:C0015672,
+        umls:C0030232,
+        umls:C0030252,
+        umls:C0039070,
+        umls:C0042963,
+        umls:C0428977 .
+
+disease:pediatric_renovascular_hypertension a med:Disease ;
+    rdfs:label "Pediatric renovascular hypertension" ;
+    med:has_symptom <http://example.org/medical/symptom/outpatient_hypertension>,
+        <http://example.org/medical/symptom/urea_clearance_disorder>,
+        umls:C0012833,
+        umls:C0013604,
+        umls:C0015967,
+        umls:C0018681,
+        umls:C0018801,
+        umls:C0027726,
+        umls:C0035078,
+        umls:C0042963,
+        umls:C0085631,
+        umls:C0205217,
+        umls:C0428883 .
+
+disease:pregnancy_with_atrial_septal_defect a med:Disease ;
+    rdfs:label "Pregnancy with Atrial Septal Defect" ;
+    med:has_symptom umls:C0003811,
+        umls:C0015264,
+        umls:C0018808,
+        umls:C0030252,
+        umls:C0033011,
+        umls:C0043144,
+        umls:C0225386,
+        umls:C0349588 .
+
+disease:premature_infant a med:Disease ;
+    rdfs:label "Premature Infant" ;
+    med:has_symptom <http://example.org/medical/symptom/innate_abdominal_wall_development_deficiency>,
+        <http://example.org/medical/symptom/periumbilical_wall_defect>,
+        umls:C0000731,
+        umls:C0011991,
+        umls:C0013604,
+        umls:C0027497,
+        umls:C0036974,
+        umls:C0042963,
+        umls:C0332197,
+        umls:C0423757,
+        umls:C0423808,
+        umls:C1140999,
+        umls:C1272706 .
+
+disease:progressive_bulbar_palsy a med:Disease ;
+    rdfs:label "Progressive Bulbar Palsy" ;
+    med:has_symptom umls:C0001948,
+        umls:C0010200,
+        umls:C0011168,
+        umls:C0016927,
+        umls:C0019825,
+        umls:C0026846,
+        umls:C0030552,
+        umls:C0037817,
+        umls:C0234518,
+        umls:C0332197,
+        umls:C0427055,
+        umls:C1947952 .
+
+disease:pulmonary_atresia a med:Disease ;
+    rdfs:label "Pulmonary Atresia" ;
+    med:has_symptom umls:C0010520,
+        umls:C0013404,
+        umls:C0030252 .
+
+disease:radiation-induced_cardiac_damage a med:Disease ;
+    rdfs:label "Radiation-Induced Cardiac Damage" ;
+    med:has_symptom <http://example.org/medical/symptom/pulsus_paradoxus>,
+        umls:C0008031,
+        umls:C0013404,
+        umls:C0015967,
+        umls:C0018787,
+        umls:C0031039,
+        umls:C0032227,
+        umls:C0033036,
+        umls:C0035203,
+        umls:C0205161,
+        umls:C0230134,
+        umls:C0232292,
+        umls:C0443235,
+        umls:C1281998,
+        umls:C4021781 .
+
+disease:revision_total_joint_arthroplasty a med:Disease ;
+    rdfs:label "Revision Total Joint Arthroplasty" ;
+    med:has_symptom umls:C0000768,
+        umls:C0030193,
+        umls:C3827376 .
+
+disease:rib_fracture a med:Disease ;
+    rdfs:label "Rib Fracture" ;
+    med:has_symptom umls:C0004048,
+        umls:C0008031,
+        umls:C0019079,
+        umls:C0030193,
+        umls:C0449676,
+        umls:C4698035 .
+
+disease:staphylococcus_aureus_marginal_keratitis a med:Disease ;
+    rdfs:label "Staphylococcus Aureus Marginal Keratitis" ;
+    med:has_symptom umls:C0009758,
+        umls:C0015392,
+        umls:C0085636,
+        umls:C0151827,
+        umls:C0423602 .
+
+disease:tinea_cruris a med:Disease ;
+    rdfs:label "Tinea Cruris" ;
+    med:has_symptom <http://example.org/medical/symptom/groin_area>,
+        <http://example.org/medical/symptom/inner_side>,
+        <http://example.org/medical/symptom/scrotal_itching>,
+        umls:C0015230,
+        umls:C0018246,
+        umls:C0033774,
+        umls:C0036471,
+        umls:C0039866,
+        umls:C0041834,
+        umls:C0042993,
+        umls:C0162834,
+        umls:C0237849,
+        umls:C0332563,
+        umls:C0444099 .
+
+disease:toxic_nephropathy_due_to_immunosuppressants_and_antineoplastic_drugs a med:Disease ;
+    rdfs:label "Toxic Nephropathy due to Immunosuppressants and Antineoplastic Drugs" ;
+    med:has_symptom umls:C0017566,
+        umls:C0028961,
+        umls:C0033687,
+        umls:C0151990,
+        umls:C0221099,
+        umls:C0232741,
+        umls:C1850041 .
+
+disease:trench_fever a med:Disease ;
+    rdfs:label "Trench Fever" ;
+    med:has_symptom umls:C0000737,
+        umls:C0012833,
+        umls:C0018681,
+        umls:C0025289,
+        umls:C0151825,
+        umls:C0221201,
+        umls:C0231528,
+        umls:C0423791 .
+
+disease:tuberculous_osteomyelitis a med:Disease ;
+    rdfs:label "Tuberculous Osteomyelitis" ;
+    med:has_symptom <http://example.org/medical/symptom/local_pain>,
+        <http://example.org/medical/symptom/local_swelling>,
+        umls:C0000768,
+        umls:C0003123,
+        umls:C0005910,
+        umls:C0015385,
+        umls:C0015672,
+        umls:C0015967,
+        umls:C0022408,
+        umls:C0022417,
+        umls:C0028081,
+        umls:C0041296,
+        umls:C1518005 .
+
+disease:upper_airway_obstruction a med:Disease ;
+    rdfs:label "Upper Airway Obstruction" ;
+    med:has_symptom <http://example.org/medical/symptom/irritative_dry_cough>,
+        umls:C0004048,
+        umls:C0013404,
+        umls:C0017262,
+        umls:C0031354,
+        umls:C0043144,
+        umls:C0205082,
+        umls:C2364135 .
+
+disease:vulvar_pemphigus a med:Disease ;
+    rdfs:label "Vulvar Pemphigus" ;
+    med:has_symptom <http://example.org/medical/symptom/mucosal_damage>,
+        umls:C0003123,
+        umls:C0005758,
+        umls:C0020517,
+        umls:C0030193,
+        umls:C0041582 .
+
+<http://example.org/medical/symptom/arc-shaped> a med:Symptom ;
+    rdfs:label "Arc-Shaped" .
+
+<http://example.org/medical/symptom/damp-heat> a med:Symptom ;
+    rdfs:label "Damp-Heat" .
+
+<http://example.org/medical/symptom/extraocular_metastasis> a med:Symptom ;
+    rdfs:label "Extraocular Metastasis" .
+
+<http://example.org/medical/symptom/groin_area> a med:Symptom ;
+    rdfs:label "Groin Area" .
+
+<http://example.org/medical/symptom/hemodynamic_disorders> a med:Symptom ;
+    rdfs:label "Hemodynamic Disorders" .
+
+<http://example.org/medical/symptom/innate_abdominal_wall_development_deficiency> a med:Symptom ;
+    rdfs:label "Innate Abdominal Wall Development Deficiency" .
+
+<http://example.org/medical/symptom/inner_side> a med:Symptom ;
+    rdfs:label "Inner Side" .
+
+<http://example.org/medical/symptom/interlobar_fissures> a med:Symptom ;
+    rdfs:label "Interlobar Fissures" .
+
+<http://example.org/medical/symptom/irritative_dry_cough> a med:Symptom ;
+    rdfs:label "Irritative Dry Cough" .
+
+<http://example.org/medical/symptom/local_pain> a med:Symptom ;
+    rdfs:label "Local Pain" .
+
+<http://example.org/medical/symptom/local_swelling> a med:Symptom ;
+    rdfs:label "Local Swelling" .
+
+<http://example.org/medical/symptom/localized_mild_pain> a med:Symptom ;
+    rdfs:label "Localized Mild Pain" .
+
+<http://example.org/medical/symptom/mill_wheel> a med:Symptom ;
+    rdfs:label "Mill Wheel" .
+
+<http://example.org/medical/symptom/outpatient_hypertension> a med:Symptom ;
+    rdfs:label "Outpatient Hypertension" .
+
+<http://example.org/medical/symptom/periumbilical_wall_defect> a med:Symptom ;
+    rdfs:label "Periumbilical Wall Defect" .
+
+<http://example.org/medical/symptom/poor_head_support> a med:Symptom ;
+    rdfs:label "Poor Head Support" .
+
+<http://example.org/medical/symptom/pulsus_paradoxus> a med:Symptom ;
+    rdfs:label "Pulsus Paradoxus" .
+
+<http://example.org/medical/symptom/roll> a med:Symptom ;
+    rdfs:label "Roll" .
+
+<http://example.org/medical/symptom/scrotal_itching> a med:Symptom ;
+    rdfs:label "Scrotal Itching" .
+
+<http://example.org/medical/symptom/spaces> a med:Symptom ;
+    rdfs:label "Spaces" .
+
+<http://example.org/medical/symptom/sudden_rage> a med:Symptom ;
+    rdfs:label "Sudden Rage" .
+
+<http://example.org/medical/symptom/urea_clearance_disorder> a med:Symptom ;
+    rdfs:label "Urea Clearance Disorder" .
+
+umls:C0000734 a med:Symptom ;
+    rdfs:label "Abdominal Mass" .
+
+umls:C0001948 a med:Symptom ;
+    rdfs:label "Drinking" .
+
+umls:C0002962 a med:Symptom ;
+    rdfs:label "Angina" .
+
+umls:C0003461 a med:Symptom ;
+    rdfs:label "Anal" .
+
+umls:C0003467 a med:Symptom ;
+    rdfs:label "Anxiety" .
+
+umls:C0003962 a med:Symptom ;
+    rdfs:label "Ascites" .
+
+umls:C0004093 a med:Symptom ;
+    rdfs:label "Weakness" .
+
+umls:C0004916 a med:Symptom ;
+    rdfs:label "Bed" .
+
+umls:C0005745 a med:Symptom ;
+    rdfs:label "Ptosis" .
+
+umls:C0005758 a med:Symptom ;
+    rdfs:label "Blisters" .
+
+umls:C0005903 a med:Symptom ;
+    rdfs:label "Body Temperature" .
+
+umls:C0005910 a med:Symptom ;
+    rdfs:label "Weight" .
+
+umls:C0005931 a med:Symptom ;
+    rdfs:label "Bone" .
+
+umls:C0006625 a med:Symptom ;
+    rdfs:label "Wasting" .
+
+umls:C0007457 a med:Symptom ;
+    rdfs:label "White" .
+
+umls:C0007785 a med:Symptom ;
+    rdfs:label "Cerebral Ischemia" .
+
+umls:C0009758 a med:Symptom ;
+    rdfs:label "Conjunctival" .
+
+umls:C0009806 a med:Symptom ;
+    rdfs:label "Constipation" .
+
+umls:C0009918 a med:Symptom ;
+    rdfs:label "Joint Contracture" .
+
+umls:C0011168 a med:Symptom ;
+    rdfs:label "Difficulty Swallowing" .
+
+umls:C0011980 a med:Symptom ;
+    rdfs:label "Diaphragm" .
+
+umls:C0013336 a med:Symptom ;
+    rdfs:label "Short Stature" .
+
+umls:C0014306 a med:Symptom ;
+    rdfs:label "Enophthalmos" .
+
+umls:C0014457 a med:Symptom ;
+    rdfs:label "Eosinophilia" .
+
+umls:C0014544 a med:Symptom ;
+    rdfs:label "Epileptiform Attacks" .
+
+umls:C0015264 a med:Symptom ;
+    rdfs:label "Exertion" .
+
+umls:C0015300 a med:Symptom ;
+    rdfs:label "Exophthalmos" .
+
+umls:C0015385 a med:Symptom ;
+    rdfs:label "Limbs" .
+
+umls:C0015450 a med:Symptom ;
+    rdfs:label "Facial" .
+
+umls:C0015726 a med:Symptom ;
+    rdfs:label "Fear" .
+
+umls:C0016927 a med:Symptom ;
+    rdfs:label "Gag Reflex" .
+
+umls:C0017262 a med:Symptom ;
+    rdfs:label "Expression" .
+
+umls:C0017566 a med:Symptom ;
+    rdfs:label "Gingival Hyperplasia" .
+
+umls:C0018188 a med:Symptom ;
+    rdfs:label "Granuloma" .
+
+umls:C0018246 a med:Symptom ;
+    rdfs:label "Groin" .
+
+umls:C0018787 a med:Symptom ;
+    rdfs:label "Cardiac" .
+
+umls:C0018790 a med:Symptom ;
+    rdfs:label "Cardiac Arrest" .
+
+umls:C0018801 a med:Symptom ;
+    rdfs:label "Heart Failure" .
+
+umls:C0018808 a med:Symptom ;
+    rdfs:label "Cardiac Murmur" .
+
+umls:C0019079 a med:Symptom ;
+    rdfs:label "Hemoptysis" .
+
+umls:C0019080 a med:Symptom ;
+    rdfs:label "Bleed" .
+
+umls:C0019825 a med:Symptom ;
+    rdfs:label "Hoarseness" .
+
+umls:C0020517 a med:Symptom ;
+    rdfs:label "Hypersensitivity" .
+
+umls:C0020598 a med:Symptom ;
+    rdfs:label "Hypocalcemia" .
+
+umls:C0020616 a med:Symptom ;
+    rdfs:label "Hypoglycemic" .
+
+umls:C0020649 a med:Symptom ;
+    rdfs:label "Hypotension" .
+
+umls:C0020672 a med:Symptom ;
+    rdfs:label "Hypothermia" .
+
+umls:C0021845 a med:Symptom ;
+    rdfs:label "Intestinal Perforation" .
+
+umls:C0022408 a med:Symptom ;
+    rdfs:label "Joint Dysfunction" .
+
+umls:C0022417 a med:Symptom ;
+    rdfs:label "Joints" .
+
+umls:C0023380 a med:Symptom ;
+    rdfs:label "Lethargy" .
+
+umls:C0025287 a med:Symptom ;
+    rdfs:label "Meningeal Irritation" .
+
+umls:C0025289 a med:Symptom ;
+    rdfs:label "Meningitis" .
+
+umls:C0025320 a med:Symptom ;
+    rdfs:label "Menopause" .
+
+umls:C0026205 a med:Symptom ;
+    rdfs:label "Miosis" .
+
+umls:C0026846 a med:Symptom ;
+    rdfs:label "Muscle Atrophy" .
+
+umls:C0027726 a med:Symptom ;
+    rdfs:label "Nephrotic Syndrome" .
+
+umls:C0028259 a med:Symptom ;
+    rdfs:label "Nodules" .
+
+umls:C0028961 a med:Symptom ;
+    rdfs:label "Oliguria" .
+
+umls:C0030552 a med:Symptom ;
+    rdfs:label "Myogenic Muscle Weakness" .
+
+umls:C0031039 a med:Symptom ;
+    rdfs:label "Pericardial Effusion" .
+
+umls:C0031119 a med:Symptom ;
+    rdfs:label "Peripheral Nerve" .
+
+umls:C0032326 a med:Symptom ;
+    rdfs:label "Pneumothorax" .
+
+umls:C0033011 a med:Symptom ;
+    rdfs:label "Pregnant Women" .
+
+umls:C0033036 a med:Symptom ;
+    rdfs:label "Atrial Premature Beats" .
+
+umls:C0033422 a med:Symptom ;
+    rdfs:label "Prone" .
+
+umls:C0033775 a med:Symptom ;
+    rdfs:label "Pruritus Ani" .
+
+umls:C0034161 a med:Symptom ;
+    rdfs:label "Pus" .
+
+umls:C0034359 a med:Symptom ;
+    rdfs:label "Pyuria" .
+
+umls:C0035078 a med:Symptom ;
+    rdfs:label "Renal Failure" .
+
+umls:C0036270 a med:Symptom ;
+    rdfs:label "Scalp" .
+
+umls:C0036471 a med:Symptom ;
+    rdfs:label "Scrotum" .
+
+umls:C0037278 a med:Symptom ;
+    rdfs:label "Skin Infections" .
+
+umls:C0037817 a med:Symptom ;
+    rdfs:label "Speech" .
+
+umls:C0037993 a med:Symptom ;
+    rdfs:label "Spleen" .
+
+umls:C0038056 a med:Symptom ;
+    rdfs:label "Expectoration" .
+
+umls:C0038293 a med:Symptom ;
+    rdfs:label "Sternum" .
+
+umls:C0038351 a med:Symptom ;
+    rdfs:label "Stomach" .
+
+umls:C0038984 a med:Symptom ;
+    rdfs:label "Sweat" .
+
+umls:C0039409 a med:Symptom ;
+    rdfs:label "Tearing" .
+
+umls:C0039866 a med:Symptom ;
+    rdfs:label "Thighs" .
+
+umls:C0040408 a med:Symptom ;
+    rdfs:label "Tongue" .
+
+umls:C0040426 a med:Symptom ;
+    rdfs:label "Teeth" .
+
+umls:C0040434 a med:Symptom ;
+    rdfs:label "Abnormal Tooth" .
+
+umls:C0040440 a med:Symptom ;
+    rdfs:label "Post-Tooth Extraction" .
+
+umls:C0040822 a med:Symptom ;
+    rdfs:label "Tremors" .
+
+umls:C0041296 a med:Symptom ;
+    rdfs:label "Tuberculosis" .
+
+umls:C0041834 a med:Symptom ;
+    rdfs:label "Erythema" .
+
+umls:C0042036 a med:Symptom ;
+    rdfs:label "Urine" .
+
+umls:C0042384 a med:Symptom ;
+    rdfs:label "Vasculitis" .
+
+umls:C0042798 a med:Symptom ;
+    rdfs:label "Visual Impairment" .
+
+umls:C0042812 a med:Symptom ;
+    rdfs:label "Visual Acuity" .
+
+umls:C0042993 a med:Symptom ;
+    rdfs:label "Vulva" .
+
+umls:C0080100 a med:Symptom ;
+    rdfs:label "Refusal" .
+
+umls:C0085593 a med:Symptom ;
+    rdfs:label "Chills" .
+
+umls:C0085624 a med:Symptom ;
+    rdfs:label "Burning" .
+
+umls:C0085632 a med:Symptom ;
+    rdfs:label "Apathy" .
+
+umls:C0086565 a med:Symptom ;
+    rdfs:label "Liver Function Abnormalities" .
+
+umls:C0149745 a med:Symptom ;
+    rdfs:label "Oral Ulceration" .
+
+umls:C0151889 a med:Symptom ;
+    rdfs:label "Hyperreflexia" .
+
+umls:C0151990 a med:Symptom ;
+    rdfs:label "Cylindruria" .
+
+umls:C0152027 a med:Symptom ;
+    rdfs:label "Skin Sensory Disturbance" .
+
+umls:C0158731 a med:Symptom ;
+    rdfs:label "Pectus Carinatum" .
+
+umls:C0162834 a med:Symptom ;
+    rdfs:label "Hyperpigmentation" .
+
+umls:C0185023 a med:Symptom ;
+    rdfs:label "Fixation" .
+
+umls:C0185115 a med:Symptom ;
+    rdfs:label "Extraction" .
+
+umls:C0204695 a med:Symptom ;
+    rdfs:label "Feed" .
+
+umls:C0205148 a med:Symptom ;
+    rdfs:label "Surfaces" .
+
+umls:C0205199 a med:Symptom ;
+    rdfs:label "Composite Ulcers" .
+
+umls:C0205217 a med:Symptom ;
+    rdfs:label "Increased" .
+
+umls:C0205276 a med:Symptom ;
+    rdfs:label "Local" .
+
+umls:C0205310 a med:Symptom ;
+    rdfs:label "Paradoxical" .
+
+umls:C0205319 a med:Symptom ;
+    rdfs:label "Manifestations" .
+
+umls:C0205322 a med:Symptom ;
+    rdfs:label "Persistent" .
+
+umls:C0205419 a med:Symptom ;
+    rdfs:label "Upward Deviation" .
+
+umls:C0221099 a med:Symptom ;
+    rdfs:label "Impaired" .
+
+umls:C0221201 a med:Symptom ;
+    rdfs:label "Macular Rash" .
+
+umls:C0222647 a med:Symptom ;
+    rdfs:label "Long Bones" .
+
+umls:C0222762 a med:Symptom ;
+    rdfs:label "Ribcage" .
+
+umls:C0225386 a med:Symptom ;
+    rdfs:label "Breath" .
+
+umls:C0226896 a med:Symptom ;
+    rdfs:label "Mouth" .
+
+umls:C0230134 a med:Symptom ;
+    rdfs:label "Precordial Region" .
+
+umls:C0231528 a med:Symptom ;
+    rdfs:label "Muscle Pain" .
+
+umls:C0231898 a med:Symptom ;
+    rdfs:label "Abdominal Respiration" .
+
+umls:C0232741 a med:Symptom ;
+    rdfs:label "Liver Function" .
+
+umls:C0233426 a med:Symptom ;
+    rdfs:label "Appearance" .
+
+umls:C0234369 a med:Symptom ;
+    rdfs:label "Trembling" .
+
+umls:C0234518 a med:Symptom ;
+    rdfs:label "Slurred" .
+
+umls:C0235267 a med:Symptom ;
+    rdfs:label "Red Eyes" .
+
+umls:C0237137 a med:Symptom ;
+    rdfs:label "Foul Odor" .
+
+umls:C0237849 a med:Symptom ;
+    rdfs:label "Scaling" .
+
+umls:C0238983 a med:Symptom ;
+    rdfs:label "Chest Deformity" .
+
+umls:C0239998 a med:Symptom ;
+    rdfs:label "Recurrent Infections" .
+
+umls:C0242528 a med:Symptom ;
+    rdfs:label "Azotemia" .
+
+umls:C0332461 a med:Symptom ;
+    rdfs:label "Plaques" .
+
+umls:C0332563 a med:Symptom ;
+    rdfs:label "Papules" .
+
+umls:C0332572 a med:Symptom ;
+    rdfs:label "Discolorations" .
+
+umls:C0333056 a med:Symptom ;
+    rdfs:label "Protrusion" .
+
+umls:C0344306 a med:Symptom ;
+    rdfs:label "Intercostal Neuralgia" .
+
+umls:C0392197 a med:Symptom ;
+    rdfs:label "Warmth" .
+
+umls:C0392752 a med:Symptom ;
+    rdfs:label "Localized" .
+
+umls:C0392756 a med:Symptom ;
+    rdfs:label "Reduced" .
+
+umls:C0406670 a med:Symptom ;
+    rdfs:label "Vulvar Burning" .
+
+umls:C0423224 a med:Symptom ;
+    rdfs:label "Sunken" .
+
+umls:C0423602 a med:Symptom ;
+    rdfs:label "Foreign Body Sensation" .
+
+umls:C0423757 a med:Symptom ;
+    rdfs:label "Thin Skin" .
+
+umls:C0423808 a med:Symptom ;
+    rdfs:label "Short Nails" .
+
+umls:C0428883 a med:Symptom ;
+    rdfs:label "Diastolic Pressure" .
+
+umls:C0428977 a med:Symptom ;
+    rdfs:label "Bradycardia" .
+
+umls:C0432072 a med:Symptom ;
+    rdfs:label "Dysmorphic Features" .
+
+umls:C0439228 a med:Symptom ;
+    rdfs:label "Days" .
+
+umls:C0440752 a med:Symptom ;
+    rdfs:label "Inflammatory Cell" .
+
+umls:C0442821 a med:Symptom ;
+    rdfs:label "Strong" .
+
+umls:C0443235 a med:Symptom ;
+    rdfs:label "Impulse" .
+
+umls:C0444099 a med:Symptom ;
+    rdfs:label "Skin" .
+
+umls:C0449676 a med:Symptom ;
+    rdfs:label "Fracture Site" .
+
+umls:C0455206 a med:Symptom ;
+    rdfs:label "Mucopurulent Sputum" .
+
+umls:C0475833 a med:Symptom ;
+    rdfs:label "Tooth Color" .
+
+umls:C0521362 a med:Symptom ;
+    rdfs:label "Gastrointestinal Emptying" .
+
+umls:C0522328 a med:Symptom ;
+    rdfs:label "Limited Eye Movement" .
+
+umls:C0522503 a med:Symptom ;
+    rdfs:label "Translucent" .
+
+umls:C0522507 a med:Symptom ;
+    rdfs:label "Colored" .
+
+umls:C0557874 a med:Symptom ;
+    rdfs:label "Intellectual Developmental Delay" .
+
+umls:C0578491 a med:Symptom ;
+    rdfs:label "Infection Sites" .
+
+umls:C0700321 a med:Symptom ;
+    rdfs:label "Small" .
+
+umls:C0836916 a med:Symptom ;
+    rdfs:label "Upper Abdominal Wall" .
+
+umls:C0868928 a med:Symptom ;
+    rdfs:label "Cases" .
+
+umls:C1140999 a med:Symptom ;
+    rdfs:label "Contractions" .
+
+umls:C1145640 a med:Symptom ;
+    rdfs:label "Central Line" .
+
+umls:C1262477 a med:Symptom ;
+    rdfs:label "Weight Loss" .
+
+umls:C1272706 a med:Symptom ;
+    rdfs:label "Interval" .
+
+umls:C1281998 a med:Symptom ;
+    rdfs:label "Refractory Heart Failure" .
+
+umls:C1306673 a med:Symptom ;
+    rdfs:label "Stages" .
+
+umls:C1708071 a med:Symptom ;
+    rdfs:label "Floating" .
+
+umls:C1709366 a med:Symptom ;
+    rdfs:label "Output" .
+
+umls:C1850041 a med:Symptom ;
+    rdfs:label "Facial Hirsutism" .
+
+umls:C1858120 a med:Symptom ;
+    rdfs:label "Generalized Hypotonia" .
+
+umls:C1882365 a med:Symptom ;
+    rdfs:label "Eyeball Phenomenon" .
+
+umls:C1947952 a med:Symptom ;
+    rdfs:label "Bulbar" .
+
+umls:C2364135 a med:Symptom ;
+    rdfs:label "Discomfort" .
+
+umls:C2931507 a med:Symptom ;
+    rdfs:label "Sternal Cleft" .
+
+umls:C3714756 a med:Symptom ;
+    rdfs:label "Intellectual Disability" .
+
+umls:C3827376 a med:Symptom ;
+    rdfs:label "Functional Impairment" .
+
+umls:C4021781 a med:Symptom ;
+    rdfs:label "Electrophysiological Abnormalities" .
+
+umls:C4021797 a med:Symptom ;
+    rdfs:label "Abnormal Thorax" .
+
+umls:C4086857 a med:Symptom ;
+    rdfs:label "Slow Growth" .
+
+umls:C4698035 a med:Symptom ;
+    rdfs:label "Shallow" .
+
+umls:C5686136 a med:Symptom ;
+    rdfs:label "Intercostal" .
+
+<http://example.org/medical/symptom/mucosal_damage> a med:Symptom ;
+    rdfs:label "Mucosal Damage" .
+
+umls:C0000727 a med:Symptom ;
+    rdfs:label "Acute Abdomen",
+        "Acute Abdominal Pain" .
+
+umls:C0000768 a med:Symptom ;
+    rdfs:label "Deformity" .
+
+umls:C0003811 a med:Symptom ;
+    rdfs:label "Arrhythmia",
+        "Arrhythmias" .
+
+umls:C0013144 a med:Symptom ;
+    rdfs:label "Somnolence" .
+
+umls:C0015230 a med:Symptom ;
+    rdfs:label "Rash",
+        "Skin Rash" .
+
+umls:C0015392 a med:Symptom ;
+    rdfs:label "Eye",
+        "Eyeball" .
+
+umls:C0016663 a med:Symptom ;
+    rdfs:label "Pathological Fracture",
+        "Pathological Fractures" .
+
+umls:C0018965 a med:Symptom ;
+    rdfs:label "Hematuria" .
+
+umls:C0019209 a med:Symptom ;
+    rdfs:label "Enlarged Liver",
+        "Hepatomegaly" .
+
+umls:C0020538 a med:Symptom ;
+    rdfs:label "Hypertension" .
+
+umls:C0022107 a med:Symptom ;
+    rdfs:label "Irritability" .
+
+umls:C0028081 a med:Symptom ;
+    rdfs:label "Night Sweats" .
+
+umls:C0030232 a med:Symptom ;
+    rdfs:label "Pale",
+        "Pallor" .
+
+umls:C0031354 a med:Symptom ;
+    rdfs:label "Pharynx",
+        "Throat" .
+
+umls:C0032227 a med:Symptom ;
+    rdfs:label "Pleural Effusion" .
+
+umls:C0033687 a med:Symptom ;
+    rdfs:label "Proteinuria" .
+
+umls:C0033774 a med:Symptom ;
+    rdfs:label "Itching" .
+
+umls:C0035203 a med:Symptom ;
+    rdfs:label "Respiration" .
+
+umls:C0036658 a med:Symptom ;
+    rdfs:label "Sensation" .
+
+umls:C0036974 a med:Symptom ;
+    rdfs:label "Shock" .
+
+umls:C0038990 a med:Symptom ;
+    rdfs:label "Sweating" .
+
+umls:C0043144 a med:Symptom ;
+    rdfs:label "Wheezing" .
+
+umls:C0085636 a med:Symptom ;
+    rdfs:label "Photophobia" .
+
+umls:C0205216 a med:Symptom ;
+    rdfs:label "Decreased",
+        "Diminished" .
+
+umls:C0205250 a med:Symptom ;
+    rdfs:label "Elevated" .
+
+umls:C0232292 a med:Symptom ;
+    rdfs:label "Chest Tightness" .
+
+umls:C0234233 a med:Symptom ;
+    rdfs:label "Tenderness" .
+
+umls:C0278140 a med:Symptom ;
+    rdfs:label "Severe Pain" .
+
+umls:C0344232 a med:Symptom ;
+    rdfs:label "Blurred Vision",
+        "Blurry Vision" .
+
+umls:C0349588 a med:Symptom ;
+    rdfs:label "Shortness" .
+
+umls:C0423791 a med:Symptom ;
+    rdfs:label "Maculopapular Rash",
+        "Maculopapular Rashes" .
+
+umls:C0427055 a med:Symptom ;
+    rdfs:label "Drooping",
+        "Facial Muscle Weakness" .
+
+umls:C0002871 a med:Symptom ;
+    rdfs:label "Anemia" .
+
+umls:C0004048 a med:Symptom ;
+    rdfs:label "Breathing",
+        "Inhaling",
+        "Inspiratory" .
+
+umls:C0022346 a med:Symptom ;
+    rdfs:label "Jaundice",
+        "Yellowing Of" .
+
+umls:C0030252 a med:Symptom ;
+    rdfs:label "Palpitations" .
+
+umls:C0036572 a med:Symptom ;
+    rdfs:label "Convulsions",
+        "Seizures" .
+
+umls:C0040264 a med:Symptom ;
+    rdfs:label "Tinnitus" .
+
+umls:C0041582 a med:Symptom ;
+    rdfs:label "Ulceration",
+        "Ulcers" .
+
+umls:C0151825 a med:Symptom ;
+    rdfs:label "Bone Pain" .
+
+umls:C0151827 a med:Symptom ;
+    rdfs:label "Eye Pain" .
+
+umls:C0205082 a med:Symptom ;
+    rdfs:label "Severe" .
+
+umls:C1518005 a med:Symptom ;
+    rdfs:label "Low-Grade" .
+
+umls:C0000731 a med:Symptom ;
+    rdfs:label "Abdominal Distension",
+        "Abdominal Distention",
+        "Bloating" .
+
+umls:C0003123 a med:Symptom ;
+    rdfs:label "Anorexia",
+        "Loss Of Appetite" .
+
+umls:C0008031 a med:Symptom ;
+    rdfs:label "Chest Pain" .
+
+umls:C0018681 a med:Symptom ;
+    rdfs:label "Headache" .
+
+umls:C0039070 a med:Symptom ;
+    rdfs:label "Fainting",
+        "Syncope" .
+
+umls:C0085631 a med:Symptom ;
+    rdfs:label "Restlessness" .
+
+umls:C0205161 a med:Symptom ;
+    rdfs:label "Abnormal" .
+
+umls:C0332197 a med:Symptom ;
+    rdfs:label "Absence" .
+
+umls:C0009421 a med:Symptom ;
+    rdfs:label "Coma" .
+
+umls:C0010200 a med:Symptom ;
+    rdfs:label "Cough",
+        "Coughing" .
+
+umls:C0010520 a med:Symptom ;
+    rdfs:label "Cyanosis" .
+
+umls:C0011991 a med:Symptom ;
+    rdfs:label "Diarrhea" .
+
+umls:C0012833 a med:Symptom ;
+    rdfs:label "Dizziness" .
+
+umls:C0013404 a med:Symptom ;
+    rdfs:label "Difficulty Breathing",
+        "Dyspnea",
+        "Shortness Of Breath" .
+
+umls:C0013604 a med:Symptom ;
+    rdfs:label "Edema",
+        "Swelling" .
+
+umls:C0015672 a med:Symptom ;
+    rdfs:label "Fatigue" .
+
+umls:C0030193 a med:Symptom ;
+    rdfs:label "Pain" .
+
+umls:C0000737 a med:Symptom ;
+    rdfs:label "Abdominal Pain" .
+
+umls:C0027497 a med:Symptom ;
+    rdfs:label "Nausea" .
+
+umls:C0042963 a med:Symptom ;
+    rdfs:label "Vomiting" .
+
+umls:C0015967 a med:Symptom ;
+    rdfs:label "Fever" .
+
